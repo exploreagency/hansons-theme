@@ -9,8 +9,8 @@ $legal_links = get_field( 'legal_links' );
 ?>
 
 <?php if ( $sticky_cta ) :
-  $url = $cta['url'];
-  $label = $cta['title'];
+  $url = $sticky_cta['url'];
+  $label = $sticky_cta['title'];
   ?>
   <div class="sticky-cta__wrapper">
     <a href="<?= esc_url( $url ); ?>"
@@ -33,8 +33,8 @@ $legal_links = get_field( 'legal_links' );
       <?php if ( $legal_links ) : ?>
         <div class="lp-footer__legal-links">
           <?php foreach ( $legal_links as $legal_link ) :
-            $url = $legal_link['url'];
-            $label = $legal_link['title'];
+            $url = $legal_link['legal_link']['url'];
+            $label = $legal_link['legal_link']['title'];
             ?>
             <a href="<?= esc_url( $url ); ?>"
                target="_blank"
