@@ -28,8 +28,10 @@
     border-radius: variables.$rounded-lg;
     padding: 0 1rem;
     font-size: variables.$font-sm;
+    font-weight: 700;
     color: variables.$primary;
     text-transform: uppercase;
+    text-decoration: none;
     transition: all 0.15s ease-in-out;
 
     @include mixins.laptop {
