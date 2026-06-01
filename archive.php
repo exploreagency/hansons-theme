@@ -4,7 +4,7 @@
  *
  * @link https://developer.wordpress.org/themes/basics/template-hierarchy/
  *
- * @package hansons-theme
+ * @package venture-theme
  */
 
 get_header();
