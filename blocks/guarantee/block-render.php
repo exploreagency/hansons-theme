@@ -23,13 +23,13 @@ $image            = get_field( 'image' );
         <div class="guarantee__grid__content">
           <?php if ( $heading ) : ?>
             <h2 class="guarantee__grid__content__heading">
-              <?= wp_kses( $heading ); ?>
+              <?= wp_kses_post( $heading ); ?>
             </h2>
           <?php endif; ?>
 
           <?php if ( $description ) : ?>
             <div class="guarantee__grid__content__description">
-              <?= wp_kses( $description ); ?>
+              <?= wp_kses_post( $description ); ?>
             </div>
           <?php endif; ?>
 
