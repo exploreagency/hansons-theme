@@ -3,11 +3,11 @@
 
 @use "../abstracts/mixins";
 
-@include mixins.font-face( Jost, "../../src/fonts/Jost-Bold", 700, normal );
-@include mixins.font-face( Jost, "../../src/fonts/Jost-BoldItalic", 700, italic );
-@include mixins.font-face( Jost, "../../src/fonts/Jost-SemiBold", 600, normal );
-@include mixins.font-face( Jost, "../../src/fonts/Jost-SemiBoldItalic", 600, italic );
-@include mixins.font-face( Jost, "../../src/fonts/Jost-Medium", 500, normal );
-@include mixins.font-face( Jost, "../../src/fonts/Jost-MediumItalic", 500, italic );
-@include mixins.font-face( Jost, "../../src/fonts/Jost-Regular", 400, normal );
-@include mixins.font-face( Jost, "../../src/fonts/Jost-Italic", 400, italic );
+@include mixins.font-face( Jost, "../fonts/Jost-Bold", 700, normal );
+@include mixins.font-face( Jost, "../fonts/Jost-BoldItalic", 700, italic );
+@include mixins.font-face( Jost, "../fonts/Jost-SemiBold", 600, normal );
+@include mixins.font-face( Jost, "../fonts/Jost-SemiBoldItalic", 600, italic );
+@include mixins.font-face( Jost, "../fonts/Jost-Medium", 500, normal );
+@include mixins.font-face( Jost, "../fonts/Jost-MediumItalic", 500, italic );
+@include mixins.font-face( Jost, "../fonts/Jost-Regular", 400, normal );
+@include mixins.font-face( Jost, "../fonts/Jost-Italic", 400, italic );
