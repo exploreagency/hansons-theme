@@ -1,0 +1,92 @@
+/* Mixins
+   ========================================================================== */
+
+@use '../abstracts/variables';
+
+/**
+ * Media Queries
+ */
+@mixin landscape {
+  @media only screen and ( min-width: variables.$landscape ) {
+    @content;
+  }
+}
+
+@mixin tablet {
+  @media only screen and ( min-width: variables.$tablet ) {
+    @content;
+  }
+}
+
+@mixin laptop {
+  @media only screen and ( min-width: variables.$laptop ) {
+    @content;
+  }
+}
+
+@mixin desktop {
+  @media only screen and ( min-width: variables.$desktop ) {
+    @content;
+  }
+}
+
+@mixin widescreen {
+  @media only screen and ( min-width: variables.$widescreen ) {
+    @content;
+  }
+}
+
+/**
+ * Box
+ */
+@mixin box( $width, $height: $width ) {
+  width: $width;
+  height: $height;
+}
+
+/**
+ * Font Face
+ */
+@mixin font-face( $font-name, $path, $weight, $style ) {
+  @font-face {
+    font-family: quote( $font-name );
+    src: url( $path + ".ttf" ) format( "truetype" );
+         // url( $path + ".eot" ) format( "embedded-opentype" ),
+         // url( $path + ".otf" ) format( "opentype" ),
+         // url( $path + ".woff" ) format( "woff" ),
+         // url( $path + ".svg##{ $font-name }" ) format( "svg" );
+    font-weight: $weight;
+    font-style: $style;
+  }
+}
+
+/**
+ * Button Background Transition
+ */
+@mixin button-background-transition( $initial, $hover ) {
+  background: $initial;
+  transition: background 0.15s ease-in-out;
+
+  &:hover {
+    background: $hover;
+  }
+}
+
+/**
+ * Opacity Transition
+ */
+@mixin opacity-transition() {
+  opacity: 1;
+  transition: opacity 0.15s ease-in-out;
+
+  &:hover {
+    opacity: 0.7;
+  }
+}
+
+/**
+ * Center Content
+ */
+@mixin center-content() {
+  margin: 0 auto;
+}

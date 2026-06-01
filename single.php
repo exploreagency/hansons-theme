@@ -1,13 +1,8 @@
 <?php
 /**
- * The template for displaying all pages
+ * The template for displaying all single posts
  *
- * This is the template that displays all pages by default.
- * Please note that this is the WordPress construct of pages
- * and that other 'pages' on your WordPress site may use a
- * different template.
- *
- * @link https://developer.wordpress.org/themes/basics/template-hierarchy/
+ * @link https://developer.wordpress.org/themes/basics/template-hierarchy/#single-post
  *
  * @package venture-theme
  */
@@ -15,7 +10,7 @@
 get_header();
 ?>
 
-	<main class="main main--default-page">
+	<main class="main main--single-page">
 		<?php if ( have_posts() ) : ?>
 			<?php while ( have_posts() ) : the_post(); ?>
 				<?php the_content( '', true ); ?>

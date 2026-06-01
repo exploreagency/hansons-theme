@@ -1,0 +1,31 @@
+/* Container
+   ========================================================================== */
+
+@use '../abstracts/variables';
+@use '../abstracts/mixins';
+
+.container {
+  max-width: variables.$mobile-container-width;
+  @include mixins.center-content();
+
+  &--fluid {
+    max-width: variables.$widescreen-container-width;
+    @include mixins.center-content();
+  }
+
+  @include mixins.tablet {
+    max-width: variables.$tablet-container-width;
+  }
+
+  @include mixins.laptop {
+    max-width: variables.$laptop-container-width;
+  }
+
+  @include mixins.desktop {
+    max-width: variables.$desktop-container-width;
+  }
+
+  @include mixins.widescreen {
+    max-width: variables.$widescreen-container-width;
+  }
+}

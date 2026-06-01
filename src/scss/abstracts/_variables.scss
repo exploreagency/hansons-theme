@@ -1,0 +1,67 @@
+/* Variables
+   ========================================================================== */
+
+/**
+ * Global Variables
+ */
+$font-root: 16px;
+$line-height: 1.15;
+$letter-spacing: normal;
+$container-padding: 1.25rem;
+
+/**
+ * Layouts
+ */
+$mobile: 100%;
+$landscape: 540px;
+$tablet: 768px;
+$laptop: 1024px;
+$desktop: 1280px;
+$widescreen: 1600px;
+
+$mobile-container-width: $mobile;
+$landscape-container-width: calc( $landscape - ( 2 * $container-padding ) );
+$tablet-container-width: calc( $tablet - ( 2 * $container-padding ) );
+$laptop-container-width: calc( $laptop - ( 2 * $container-padding ) );
+$desktop-container-width: calc( $desktop - ( 2 * $container-padding ) );
+$widescreen-container-width: calc( $widescreen - ( 2 * $container-padding ) );
+
+/**
+ * Margins
+ */
+$center-content: 0 auto;
+
+/**
+ * Colors
+ */
+$primary: #202B84;
+$secondary: #F7A714;
+$accent: #F7A714;
+$complementary: #EBEBEC;
+$background: #FFFFFF;
+$stars: #FBBA27;
+$gray: #EBEBEC;
+$black: #000000;
+$white: #FFFFFF;
+
+/**
+ * Fonts
+ */
+$font-xs: 0.75rem;
+$font-sm: 0.875rem;
+$font-base: 1rem;
+$font-md: 1.25rem;
+$font-lg: 1.5rem;
+$font-xl: 2rem;
+$font-2xl: 2.5rem;
+$font-3xl: 3rem;
+$font-4xl: 3.5rem;
+
+/**
+ * Borders
+ */
+$rounded-sm: 0.1rem;
+$rounded-md: 0.25rem;
+$rounded-lg: 0.5rem;
+$rounded-xl: 1rem;
+$rounded-full: 9999px;

@@ -1,6 +1,6 @@
 {
-  "name": "acf/lp-header",
-  "title": "ACF Block - LP Header",
+  "name": "acf/guarantee",
+  "title": "ACF Block - Guarantee",
   "description": "",
   "category": "custom-blocks",
   "icon": "screenoptions",
@@ -21,9 +21,9 @@
     "renderTemplate": "block-render.php"
   },
   "style": [
-    "file:../../dist/css/blocks/lp-header.min.css"
+    "file:../../dist/css/blocks/guarantee.min.css"
   ],
   "script": [
-    "file:../../dist/js/blocks/lp-header.min.js"
+    "file:../../dist/js/blocks/guarantee.min.js"
   ]
 }

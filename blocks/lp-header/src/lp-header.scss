@@ -1,0 +1,86 @@
+/* LP Header
+   ========================================================================== */
+
+@use '../../../src/scss/abstracts/variables';
+@use '../../../src/scss/abstracts/mixins';
+
+.header {
+  position: sticky;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background: variables.$white;
+  z-index: 50;
+
+  &__wrapper {
+    position: relative;
+    width: 100%;
+    padding: 0.5rem variables.$container-padding;
+  }
+
+  &__inner {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    background: variables.$white;
+    padding: 0 1rem;
+  }
+
+  &__logo {
+    max-width: 5rem;
+    width: 100%;
+    height: auto;
+    transition: opacity 0.15s ease-in-out;
+
+    @include mixins.desktop {
+      max-width: 9rem;
+    }
+
+    &:hover {
+      opacity: 0.7;
+    }
+
+    img {
+      width: 100%;
+      height: auto;
+      object-fit: contain;
+    }
+  }
+
+  &__mobile-buttons {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 1rem;
+
+    @include mixins.laptop {
+      display: none;
+    }
+  }
+
+  &__phone-button {
+    
+    transition: opacity 0.15s ease-in-out;
+
+    &:hover {
+      opacity: 0.7;
+    }
+
+    & svg {
+      width: 24px;
+      height: 24px;
+      color: variables.$primary;
+    }
+  }
+
+  &__button--cta {
+    display: none;
+
+    @include mixins.laptop {
+      display: block;
+    }
+  }
+}
