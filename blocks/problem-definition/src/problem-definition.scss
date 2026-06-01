@@ -1,0 +1,95 @@
+/* Problem Definition
+   ========================================================================== */
+
+@use '../../../src/scss/abstracts/variables';
+@use '../../../src/scss/abstracts/mixins';
+
+.problem-definition {
+  width: 100%;
+
+  &__heading {
+    font-size: clamp( variables.$font-md, 5vw, variables.$font-2xl );
+    color: variables.$primary;
+    font-weight: 700;
+    text-align: center;
+
+    @include mixins.landscape {
+      text-align: left;
+    }
+  }
+
+  &__description {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 1rem;
+    width: 100%;
+    color: variables.$black;
+    text-align: center;
+
+    p {
+      font-size: clamp( variables.$font-base, 1vw, variables.$font-semi-md );
+      color: variables.$black;
+      font-weight: 400;
+    }
+  }
+
+  &__problems-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+    width: 100%;
+
+    @include mixins.landscape {
+      grid-template-columns: 1fr 1fr;
+    }
+
+    @include mixins.laptop {
+      grid-template-columns: 1fr 1fr 1fr 1fr;
+    }
+
+    @include mixins.widescreen {
+      gap: 2rem;
+    }
+  }
+
+  &__problem {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 1rem;
+    width: 100%;
+
+    &__image {
+      width: 100%;
+      aspect-ratio: 1 / 1;
+      object-fit: cover;
+    }
+
+    &__description {
+      font-size: clamp( variables.$font-base, 1vw, variables.$font-semi-md );
+      color: variables.$black;
+      font-weight: 400;
+      text-align: center;
+    }
+  }
+
+  &__footnote {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 1rem;
+    width: 100%;
+    color: variables.$black;
+    text-align: center;
+
+    p {
+      font-size: clamp( variables.$font-base, 1vw, variables.$font-semi-md );
+      color: variables.$black;
+      font-weight: 400;
+    }
+  }
+}

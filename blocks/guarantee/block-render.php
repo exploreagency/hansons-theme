@@ -16,6 +16,7 @@ $image            = get_field( 'image' );
         <?php if ( $image ) : ?>
           <img src="<?php echo esc_url( wp_get_attachment_image_src( $image, 'full' )[0] ); ?>"
                alt="<?php echo esc_attr( get_post_meta( $image, '_wp_attachment_image_alt', TRUE ) ); ?>"
+               loading="lazy"
                class="guarantee__grid__image"
             />
         <?php endif; ?>
