@@ -5,13 +5,15 @@
 @use '../../../src/scss/abstracts/mixins';
 
 .guarantee {
+  width: 100%;
+  background: variables.$gray;
+
   &__grid {
     display: grid;
     grid-template-columns: 1fr 2fr;
     align-items: flex-start;
     gap: 1rem;
     width: 100%;
-    background: variables.$gray;
 
     @include mixins.landscape {
       align-items: center;
