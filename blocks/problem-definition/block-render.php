@@ -36,7 +36,7 @@ $footnote      = get_field( 'footnote' );
                    loading="lazy"
                    class="problem-definition__problem__image"
                 />
-              <p class="problem-definition__problem__descritpion">
+              <p class="problem-definition__problem__description">
                 <?= wp_kses_post( $description ); ?>
               </p>
             </div>
