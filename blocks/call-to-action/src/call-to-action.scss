@@ -16,6 +16,7 @@
     @include mixins.laptop {
       grid-template-columns: 2fr 3fr;
       align-items: center;
+      gap: 2.5rem;
     }
   }
 
@@ -56,7 +57,7 @@
       }
 
       p {
-        font-size: clamp( variables.$font-base, 1vw, variables.$font-semi-md );
+        font-size: clamp( variables.$font-base, 1vw, variables.$font-md );
         color: variables.$black;
         font-weight: 400;
       }
@@ -72,7 +73,7 @@
       }
 
       li {
-        font-size: clamp( variables.$font-base, 1vw, variables.$font-semi-md );
+        font-size: clamp( variables.$font-base, 1vw, variables.$font-md );
         color: variables.$black;
         font-weight: 400;
       }
