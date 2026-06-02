@@ -13,10 +13,6 @@
     color: variables.$white;
     font-weight: 700;
     text-align: center;
-
-    @include mixins.landscape {
-      text-align: left;
-    }
   }
 
   &__description {
