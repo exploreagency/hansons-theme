@@ -81,16 +81,12 @@
         }
 
         h6 {
-          font-size: variables.$font-base;
+          font-size: clamp( variables.$font-base, 1vw, variables.$font-md );
           font-weight: 700;
-
-          @include mixins.tablet {
-            font-size: variables.$font-semi-md;
-          }
         }
 
         p {
-          font-size: variables.$font-base;
+          font-size: clamp( variables.$font-base, 1vw, variables.$font-md );
           font-weight: 400;
         }
       }

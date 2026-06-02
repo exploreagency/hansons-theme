@@ -29,7 +29,7 @@
     text-align: center;
 
     p {
-      font-size: clamp( variables.$font-base, 1vw, variables.$font-semi-md );
+      font-size: clamp( variables.$font-base, 1vw, variables.$font-md );
       color: variables.$black;
       font-weight: 400;
     }
@@ -87,7 +87,7 @@
     text-align: center;
 
     p {
-      font-size: clamp( variables.$font-base, 1vw, variables.$font-semi-md );
+      font-size: clamp( variables.$font-base, 1vw, variables.$font-md );
       color: variables.$black;
       font-weight: 400;
     }
