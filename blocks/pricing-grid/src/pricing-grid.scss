@@ -82,7 +82,7 @@
     }
 
     &__description {
-      font-size: clamp( variables.$font-base, 1vw, variables.$font-semi-md );
+      font-size: clamp( variables.$font-base, 1vw, variables.$font-md );
       color: variables.$white;
       font-weight: 400;
       text-align: center;
