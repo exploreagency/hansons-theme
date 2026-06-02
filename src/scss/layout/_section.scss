@@ -5,6 +5,12 @@
 @use '../abstracts/mixins';
 
 .section {
+  padding: 2rem variables.$container-padding;
+
+  @include mixins.laptop {
+    padding: 4rem variables.$container-padding;
+  }
+  
   &__wrapper {
     display: flex;
     flex-direction: column;

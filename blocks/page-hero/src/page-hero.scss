@@ -21,6 +21,7 @@
     object-fit: cover;
 
     &__wrapper {
+      width: 100%;
       max-height: 17.5rem;
 
       @include mixins.tablet {
@@ -48,7 +49,6 @@
     }
 
     @include mixins.desktop {
-      gap: 4rem;
       padding: 4rem 3rem;
     }
 
@@ -73,12 +73,8 @@
       color: variables.$white;
       text-align: center;
 
-      @include mixins.laptop {
-        gap: 1.5rem;
-      }
-
       h2 {
-        font-size: clamp( variables.$font-xl, 5vw, variables.$font-4xl );
+        font-size: clamp( variables.$font-xl, 5vw, variables.$font-super );
         color: variables.$white;
         font-weight: 700;
         text-align: center;
@@ -88,6 +84,13 @@
         font-size: clamp( variables.$font-md, 5vw, variables.$font-2xl );
         color: variables.$white;
         font-weight: 500;
+        text-align: center;
+      }
+
+      p {
+        font-size: clamp( variables.$font-base, 1vw, variables.$font-md );
+        color: variables.$white;
+        font-weight: 400;
         text-align: center;
       }
 

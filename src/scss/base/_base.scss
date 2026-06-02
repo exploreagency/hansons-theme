@@ -20,11 +20,6 @@ body {
 
 section {
   width: 100%;
-  padding: 2rem variables.$container-padding;
-
-  @include mixins.laptop {
-    padding: 4rem variables.$container-padding;
-  }
 }
 
 h1 {
