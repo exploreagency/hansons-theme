@@ -91,7 +91,7 @@
         flex-direction: row;
         justify-content: center;
         align-items: center;
-        gap: 1rem;
+        gap: 0.5rem;
         font-size: clamp( variables.$font-md, 1vw, variables.$font-lg );
         font-weight: 700;
         color: variables.$secondary;
@@ -113,7 +113,7 @@
           align-items: center;
           gap: 0.5rem;
           background: variables.$secondary;
-          padding: 0.5rem 1rem;
+          padding: 0.5rem;
           font-size: variables.$font-base;
           color: variables.$primary;
         }
