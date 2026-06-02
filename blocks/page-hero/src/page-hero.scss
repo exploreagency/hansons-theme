@@ -29,7 +29,7 @@
       }
 
       @include mixins.laptop {
-        max-height: auto;
+        max-height: none;
       }
     }
   }
@@ -95,7 +95,7 @@
       }
 
       a {
-        color: variables.$white;
+        color: variables.$white !important;
         text-decoration: underline;
         transition: all 0.15s ease-in-out;
 
