@@ -18,8 +18,8 @@
   &__description {
     display: flex;
     flex-direction: column;
-    justify-content: flex-start;
-    align-items: flex-start;
+    justify-content: center;
+    align-items: center;
     gap: 1rem;
     width: 100%;
     color: variables.$black;
@@ -33,6 +33,7 @@
       font-size: clamp( variables.$font-base, 1vw, variables.$font-md );
       color: variables.$black;
       font-weight: 400;
+      text-align: center;
     }
   }
 
