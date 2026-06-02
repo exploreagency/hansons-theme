@@ -10,6 +10,7 @@
   left: 0;
   width: 100%;
   background: variables.$white;
+  box-shadow: rgba( 0, 0, 0, 0.1 );
   z-index: 50;
 
   &__wrapper {
@@ -32,14 +33,9 @@
     max-width: 5rem;
     width: 100%;
     height: auto;
-    transition: opacity 0.15s ease-in-out;
 
     @include mixins.desktop {
       max-width: 9rem;
-    }
-
-    &:hover {
-      opacity: 0.7;
     }
 
     img {
@@ -49,7 +45,7 @@
     }
   }
 
-  &__mobile-buttons {
+  &__cta-buttons {
     display: flex;
     flex-direction: row;
     justify-content: flex-end;
@@ -61,26 +57,98 @@
     }
   }
 
-  &__phone-button {
-    
-    transition: opacity 0.15s ease-in-out;
+  &__cta {
+    &__phone {
+      &--mobile {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        height: 2.75rem;
+        background: variables.$secondary;
+        border: 1px solid variables.$secondary;
+        border-radius: variables.$rounded-lg;
+        padding: 0 1rem;
+        font-size: variables.$font-sm;
+        font-weight: 700;
+        color: variables.$primary;
+        text-transform: uppercase;
+        text-decoration: none;
+        transition: all 0.15s ease-in-out;
 
-    &:hover {
-      opacity: 0.7;
+        @include mixins.tablet {
+          font-size: variables.$font-base;
+        }
+
+        &:hover {
+          border: 1px solid variables.$accent;
+          background: variables.$accent;
+        }
+      }
+
+      &--desktop {
+        display: none;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        gap: 1rem;
+        font-size: clamp( variables.$font-md, 1vw, variables.$font-lg );
+        font-weight: 700;
+        color: variables.$secondary;
+        transition: all 0.15s ease-in-out;
+
+        @include mixins.laptop {
+          display: flex;
+        }
+
+        &:hover {
+          color: variables.$primary;
+        }
+
+        span {
+          display: flex;
+          flex-direction: row;
+          justify-content: center;
+          align-items: center;
+          gap: 0.5rem;
+          background: variables.$secondary;
+          padding: 0.5rem 1rem;
+          font-size: variables.$font-base;
+          color: variables.$primary;
+        }
+      }
     }
 
-    & svg {
-      width: 24px;
-      height: 24px;
+    &__form {
+      display: none;
+      flex-direction: row;
+      justify-content: center;
+      align-items: center;
+      height: 2.75rem;
+      background: variables.$secondary;
+      border: 1px solid variables.$secondary;
+      border-radius: variables.$rounded-lg;
+      padding: 0 1rem;
+      font-size: variables.$font-sm;
+      font-weight: 700;
       color: variables.$primary;
-    }
-  }
+      text-transform: uppercase;
+      text-decoration: none;
+      transition: all 0.15s ease-in-out;
 
-  &__button--cta {
-    display: none;
+      @include mixins.tablet {
+        font-size: variables.$font-base;
+      }
 
-    @include mixins.laptop {
-      display: block;
+      @include mixins.laptop {
+        display: flex;
+        font-size: variables.$font-semi-md;
+      }
+
+      &:hover {
+        border: 1px solid variables.$accent;
+        background: variables.$accent;
+      }
     }
   }
 }
