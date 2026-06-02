@@ -30,7 +30,7 @@ $testimonials_list = get_field( 'testimonials_list' );
       <?php if ( $testimonials_list ) : ?>
         <div class="testimonials__carousel"
              data-embla
-             data-options='{ "loop": true }'
+             data-options='{ "loop": true, "align": "start" }'
           >
           <div class="embla__viewport">
             <div class="embla__wrapper">

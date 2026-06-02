@@ -33,7 +33,7 @@
     transition: all 0.15s ease-in-out;
 
     &:hover {
-      border: 1px solid variables.$accent;
+      border: 2px solid variables.$accent;
       color: variables.$accent;
     }
 
