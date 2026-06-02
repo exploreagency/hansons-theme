@@ -34,7 +34,7 @@ $cta          = get_field( 'cta' );
             ?>
             <div class="pricing-grid__card">
               <img src="<?= esc_url( wp_get_attachment_image_src( $icon, 'full' )[0] ); ?>"
-                   alt="<?= esc_attr( get_post_meta( $image, '_wp_attachment_image_alt', TRUE ) ); ?>"
+                   alt="<?= esc_attr( get_post_meta( $icon, '_wp_attachment_image_alt', TRUE ) ); ?>"
                    loading="lazy"
                    class="pricing-grid__card__icon"
                 />
