@@ -43,6 +43,15 @@
 
       @include mixins.tablet {
         grid-template-columns: 1fr 4fr;
+        gap: 2rem;
+      }
+
+      @include mixins.desktop {
+        grid-template-columns: 1fr 5fr;
+      }
+
+      @include mixins.widescreen {
+        grid-template-columns: 1fr 6fr;
       }
 
       &__icon {
