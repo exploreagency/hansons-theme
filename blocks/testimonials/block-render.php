@@ -79,7 +79,22 @@ $testimonials_list = get_field( 'testimonials_list' );
             </div>
           </div>
 
-
+          <button class="embla__button embla__button--absolute embla__button--absolute--prev embla__button--prev"
+                  type="button"
+                  aria-label="Previous testimonial"
+            >
+            <svg width="19" height="33" viewBox="0 0 19 33" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M17.5 32L2 16.5L17.5 1" stroke="currentColor" stroke-width="2"/>
+            </svg>
+          </button>
+          <button class="embla__button embla__button--absolute embla__button--absolute--next embla__button--next"
+                  type="button"
+                  aria-label="Next testimonial"
+            >
+            <svg width="18" height="33" viewBox="0 0 18 33" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M0.999998 32L16.5 16.5L0.999999 1" stroke="currentColor" stroke-width="2"/>
+            </svg>
+          </button>
         </div>
       <?php endif; ?>
     </div>
