@@ -20,7 +20,7 @@ $testimonials_list = get_field( 'testimonials_list' );
 
         <?php if ( $rating ) : ?>
           <p class="testimonials__rating">
-            <span></span>
+            <?= wp_kses_post( $rating ); ?>
           </p>
         <?php endif; ?>
       </div>
