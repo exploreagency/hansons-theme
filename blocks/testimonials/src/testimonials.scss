@@ -47,6 +47,14 @@
         flex: 0 0 33.3333%;
       }
 
+      @include mixins.desktop {
+        flex: 0 0 25%;
+      }
+
+      @include mixins.widescreen {
+        flex: 0 0 20%;
+      }
+
       &__container {
         padding: 0 0.5rem;
       }
@@ -57,7 +65,7 @@
         justify-content: space-between;
         align-items: flex-start;
         width: 100%;
-        height: 24rem;
+        height: 30rem;
         border: 1px solid variables.$gray;
         border-radius: variables.$rounded-lg;
         padding: 1.75rem 1.25rem;
@@ -103,6 +111,12 @@
         align-items: flex-start;
         gap: 1rem;
         width: 100%;
+      }
+
+      &__divider {
+        height: 0.125rem;
+        width: 100%;
+        background: variables.$gray;
       }
 
       &__source {
