@@ -11,7 +11,9 @@ $testimonials_list = get_field( 'testimonials_list' );
 <section <?php echo vt_block_attributes( 'testimonials', $block ); ?>>
   <div class="container">
     <div class="section__wrapper">
-      <div class="section__heading section__heading--center">
+      <div class="section__heading section__heading--center"
+           data-orientation="column"
+        >
         <?php if ( $heading ) : ?>
           <h2 class="testimonials__heading">
             <?= wp_kses_post( $heading ); ?>
