@@ -51,10 +51,6 @@
     justify-content: flex-end;
     align-items: center;
     gap: 1rem;
-
-    @include mixins.laptop {
-      display: none;
-    }
   }
 
   &__cta {
@@ -78,6 +74,10 @@
 
         @include mixins.tablet {
           font-size: variables.$font-base;
+        }
+
+        @include mixins.laptop {
+          display: none;
         }
 
         &:hover {
