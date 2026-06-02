@@ -39,11 +39,11 @@
       flex-direction: column;
       justify-content: flex-start;
       align-items: flex-start;
-      gap: 1rem;
+      gap: 1.5rem;
       width: 100%;
 
       @include mixins.laptop {
-        gap: 1.5rem;
+        gap: 2.5rem;
       }
     }
 
@@ -71,6 +71,19 @@
         width: 100%;
         height: auto;
         object-fit: contain;
+      }
+
+      &__content {
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: flex-start;
+        gap: 1rem;
+        width: 100%;
+
+        @include mixins.laptop {
+          gap: 1.5rem;
+        }
       }
 
       &__heading {
