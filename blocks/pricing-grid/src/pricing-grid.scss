@@ -44,10 +44,15 @@
 
     @include mixins.tablet {
       grid-template-columns: 1fr 1fr 1fr;
+      gap: 2rem;
+    }
+
+    @include mixins.laptop {
+      gap: 2.5rem;
     }
 
     @include mixins.widescreen {
-      gap: 2rem;
+      gap: 3rem;
     }
   }
 
