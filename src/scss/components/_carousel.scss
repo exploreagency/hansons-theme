@@ -23,19 +23,18 @@
     flex-direction: row;
     justify-content: center;
     align-items: center;
-    width: 3rem;
-    height: 3rem;
-    border: 1px solid transparent;
-    border-radius: variables.$rounded-lg;
-    background: transparent;
+    width: 2rem;
+    height: 2rem;
+    border: 1px solid variables.$gray;
+    border-radius: variables.$rounded-full;
+    background: variables.$white;
     color: variables.$secondary;
     cursor: pointer;
     transition: all 0.15s ease-in-out;
 
     &:hover {
       border: 1px solid variables.$accent;
-      background: variables.$accent;
-      color: variables.$white;
+      color: variables.$accent;
     }
 
     &--absolute {
