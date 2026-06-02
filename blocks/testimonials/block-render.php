@@ -79,7 +79,7 @@ $testimonials_list = get_field( 'testimonials_list' );
             </div>
           </div>
 
-          <button class="embla__button embla__button--absolute embla__button--absolute--prev embla__button--prev"
+          <button class="embla__button embla__button--absolute embla__button--absolute--left embla__button--prev"
                   type="button"
                   aria-label="Previous testimonial"
             >
@@ -87,7 +87,7 @@ $testimonials_list = get_field( 'testimonials_list' );
               <path d="M17.5 32L2 16.5L17.5 1" stroke="currentColor" stroke-width="2"/>
             </svg>
           </button>
-          <button class="embla__button embla__button--absolute embla__button--absolute--next embla__button--next"
+          <button class="embla__button embla__button--absolute embla__button--absolute--right embla__button--next"
                   type="button"
                   aria-label="Next testimonial"
             >
