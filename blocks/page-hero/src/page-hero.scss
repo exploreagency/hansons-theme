@@ -1,0 +1,109 @@
+/* LP Header
+   ========================================================================== */
+
+@use '../../../src/scss/abstracts/variables';
+@use '../../../src/scss/abstracts/mixins';
+
+.page-hero {
+  display: grid;
+  grid-template-columns: 1fr;
+  align-items: center;
+  width: 100%;
+  background: variables.$primary;
+
+  @include mixins.laptop {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  &__image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+
+    &__wrapper {
+      max-height: 17.5rem;
+
+      @include mixins.tablet {
+        max-height: 22.5rem;
+      }
+
+      @include mixins.laptop {
+        max-height: auto;
+      }
+    }
+  }
+
+  &__content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 1.5rem;
+    width: 100%;
+    padding: 2rem 1.25rem;
+
+    @include mixins.laptop {
+      gap: 2rem;
+      padding: 4rem 2.5rem;
+    }
+
+    @include mixins.desktop {
+      gap: 4rem;
+      padding: 4rem 3rem;
+    }
+
+    @include mixins.widescreen {
+      padding: 4rem;
+    }
+
+    &__heading {
+      font-size: clamp( variables.$font-lg, 5vw, variables.$font-3xl );
+      color: variables.$white;
+      font-weight: 700;
+      text-align: center;
+    }
+
+    &__offer {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      gap: 1rem;
+      width: 100%;
+      color: variables.$white;
+      text-align: center;
+
+      @include mixins.laptop {
+        gap: 1.5rem;
+      }
+
+      h2 {
+        font-size: clamp( variables.$font-xl, 5vw, variables.$font-4xl );
+        color: variables.$white;
+        font-weight: 700;
+        text-align: center;
+      }
+
+      h3 {
+        font-size: clamp( variables.$font-md, 5vw, variables.$font-2xl );
+        color: variables.$white;
+        font-weight: 500;
+        text-align: center;
+      }
+
+      a {
+        color: variables.$white;
+        text-decoration: underline;
+        transition: all 0.15s ease-in-out;
+
+        &:hover {
+          color: variables.$secondary;
+        }
+      }
+
+      span {
+        color: variables.$secondary;
+      }
+    }
+  }
+}
