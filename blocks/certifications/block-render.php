@@ -19,9 +19,7 @@ $gallery = get_field( 'gallery' );
 
         <?php if ( $gallery ) : ?>
           <div class="certifications__gallery">
-            <?php foreach ( $gallery as $certification ) :
-              $image = $certification['image'];
-              ?>
+            <?php foreach ( $gallery as $image ) : ?>
               <img src="<?= esc_url( wp_get_attachment_image_src( $image, 'full' )[0] ); ?>"
                    alt="<?= esc_attr( get_post_meta( $image, '_wp_attachment_image_alt', TRUE ) ); ?>"
                    loading="lazy"
