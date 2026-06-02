@@ -95,6 +95,7 @@
         font-size: clamp( variables.$font-md, 1vw, variables.$font-lg );
         font-weight: 700;
         color: variables.$secondary;
+        text-decoration: none;
         transition: all 0.15s ease-in-out;
 
         @include mixins.laptop {
