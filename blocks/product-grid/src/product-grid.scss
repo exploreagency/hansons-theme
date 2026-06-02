@@ -1,0 +1,62 @@
+/* Product Grid
+   ========================================================================== */
+
+@use '../../../src/scss/abstracts/variables';
+@use '../../../src/scss/abstracts/mixins';
+
+.product-grid {
+  width: 100%;
+  background: linear-gradient( to bottom, variables.$white 59%, variables.$gray 100% );
+
+  &__heading {
+    font-size: clamp( variables.$font-lg, 5vw, variables.$font-3xl );
+    color: variables.$primary;
+    font-weight: 700;
+    text-align: center;
+  }
+
+  &__description {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    gap: 1rem;
+    width: 100%;
+    color: variables.$black;
+
+    span {
+      color: variables.$primary;
+    }
+
+    p {
+      font-size: clamp( variables.$font-base, 1vw, variables.$font-md );
+      color: variables.$black;
+      font-weight: 400;
+    }
+  }
+
+  &__products {
+    display: grid;
+    grid-template-columns: 1fr;
+    align-items: flex-start;
+    gap: 1.5rem;
+    width: 100%;
+
+    @include mixins.tablet {
+      grid-template-columns: 1fr 1fr 1fr;
+    }
+
+    @include mixins.desktop {
+      gap: 1.5rem;
+    }
+
+    @include mixins.widescreen {
+      gap: 2rem;
+    }
+  }
+
+  &__product {
+    display: flex;
+    flex-direction: column;
+  }
+}
