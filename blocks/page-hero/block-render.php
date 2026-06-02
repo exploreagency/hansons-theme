@@ -31,7 +31,7 @@ $image            = get_field( 'image' );
 
     <?php if ( $offer ) : ?>
       <div class="page-hero__content__offer">
-        <?= wp_kses_post( $heading ); ?>
+        <?= wp_kses_post( $offer ); ?>
       </div>  
     <?php endif; ?>
 
