@@ -1,0 +1,134 @@
+/* Pricing Grid
+   ========================================================================== */
+
+@use '../../../src/scss/abstracts/variables';
+@use '../../../src/scss/abstracts/mixins';
+
+.pricing-grid {
+  width: 100%;
+  background: variables.$primary;
+
+  &__heading {
+    font-size: clamp( variables.$font-lg, 5vw, variables.$font-3xl );
+    color: variables.$white;
+    font-weight: 700;
+    text-align: center;
+
+    @include mixins.landscape {
+      text-align: left;
+    }
+  }
+
+  &__description {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 1rem;
+    width: 100%;
+    color: variables.$white;
+    text-align: center;
+
+    p {
+      font-size: clamp( variables.$font-base, 1vw, variables.$font-md );
+      color: variables.$white;
+      font-weight: 400;
+    }
+  }
+
+  &__cards {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+    width: 100%;
+
+    @include mixins.tablet {
+      grid-template-columns: 1fr 1fr 1fr;
+    }
+
+    @include mixins.widescreen {
+      gap: 2rem;
+    }
+  }
+
+  &__card {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 1rem;
+    width: 100%;
+
+    @include mixins.laptop {
+      gap: 1.5rem;
+    }
+
+    &__icon {
+      width: 10rem;
+      height: auto;
+      object-fit: cover;
+    }
+
+    &__heading {
+      font-size: clamp( variables.$font-md, 2vw, variables.$font-lg );
+      color: variables.$secondary;
+      font-weight: 500;
+      text-align: center;
+    }
+
+    &__description {
+      font-size: clamp( variables.$font-base, 1vw, variables.$font-semi-md );
+      color: variables.$white;
+      font-weight: 400;
+      text-align: center;
+    }
+  }
+
+  &__footnote {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 1rem;
+    width: 100%;
+    color: variables.$white;
+    text-align: center;
+
+    p {
+      font-size: clamp( variables.$font-base, 1vw, variables.$font-md );
+      color: variables.$white;
+      font-weight: 400;
+    }
+  }
+
+  &__cta {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    height: 2.75rem;
+    background: variables.$secondary;
+    border: 1px solid variables.$secondary;
+    border-radius: variables.$rounded-lg;
+    padding: 0 1rem;
+    font-size: variables.$font-sm;
+    font-weight: 700;
+    color: variables.$primary;
+    text-transform: uppercase;
+    text-decoration: none;
+    transition: all 0.15s ease-in-out;
+
+    @include mixins.tablet {
+      font-size: variables.$font-base;
+    }
+
+    @include mixins.laptop {
+      font-size: variables.$font-semi-md;
+    }
+
+    &:hover {
+      border: 1px solid variables.$accent;
+      background: variables.$accent;
+    }
+  }
+}

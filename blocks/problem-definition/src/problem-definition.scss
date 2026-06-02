@@ -8,7 +8,7 @@
   width: 100%;
 
   &__heading {
-    font-size: clamp( variables.$font-md, 5vw, variables.$font-2xl );
+    font-size: clamp( variables.$font-lg, 5vw, variables.$font-3xl );
     color: variables.$primary;
     font-weight: 700;
     text-align: center;
