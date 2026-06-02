@@ -47,12 +47,8 @@
         flex: 0 0 33.3333%;
       }
 
-      @include mixins.desktop {
-        flex: 0 0 25%;
-      }
-
       @include mixins.widescreen {
-        flex: 0 0 20%;
+        flex: 0 0 25%;
       }
 
       &__container {
@@ -95,12 +91,8 @@
       }
 
       &__review {
-        display: flex;
-        flex-direction: column;
-        justify-content: flex-start;
-        align-items: flex-start;
-        gap: 0.5rem;
-        width: 100%;
+        font-size: variables.$font-sm;
+        font-weight: 400;
         color: variables.$black;
       }
 
@@ -133,9 +125,9 @@
       }
 
       &__icon {
-        max-width: 2.5rem;
+        max-width: 2rem;
         width: 100%;
-        max-height: 2.5rem;
+        max-height: 2rem;
         height: 100%;
         object-fit: contain;
       }
