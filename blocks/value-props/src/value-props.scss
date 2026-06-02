@@ -26,6 +26,14 @@
       gap: 2.5rem;
     }
 
+    @include mixins.desktop {
+      gap: 3.5rem;
+    }
+
+    @include mixins.widescreen {
+      gap: 5rem;
+    }
+
     &__value-prop {
       display: grid;
       grid-template-columns: 1fr 3fr;
