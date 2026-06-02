@@ -24,6 +24,7 @@
     "file:../../dist/css/blocks/testimonials.min.css"
   ],
   "script": [
+    "venture-vendor",
     "file:../../dist/js/blocks/testimonials.min.js"
   ]
 }
