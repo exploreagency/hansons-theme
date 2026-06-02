@@ -3,8 +3,8 @@
  * Certifications Block
  */
 
-$heading                = get_field( 'heading' );
-$certifications_gallery = get_field( 'description' );
+$heading = get_field( 'heading' );
+$gallery = get_field( 'gallery' );
 ?>
 
 <section <?php echo vt_block_attributes( 'certifications', $block ); ?>>
@@ -17,9 +17,9 @@ $certifications_gallery = get_field( 'description' );
           </h2>
         <?php endif; ?>
 
-        <?php if ( $certifications_gallery ) : ?>
+        <?php if ( $gallery ) : ?>
           <div class="certifications__gallery">
-            <?php foreach ( $certifications_gallery as $certification ) :
+            <?php foreach ( $gallery as $certification ) :
               $image = $certification['image'];
               ?>
               <img src="<?= esc_url( wp_get_attachment_image_src( $image, 'full' )[0] ); ?>"
