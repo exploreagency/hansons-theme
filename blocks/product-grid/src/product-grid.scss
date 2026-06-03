@@ -215,6 +215,12 @@
         font-weight: 400;
         color: variables.$black;
         text-align: center;
+
+        span {
+          font-size: clamp( variables.$font-semi-md, 3vw, variables.$font-lg );
+          font-weight: 700;
+          color: variables.$primary;
+        }
       }
 
       &__image {
