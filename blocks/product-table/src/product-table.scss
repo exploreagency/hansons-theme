@@ -32,6 +32,7 @@
       width: 100%;
       min-height: clamp(5rem, 14vw, 7rem);
 			padding: 0.875rem 1rem;
+      border-top: 1px solid rgba( variables.$black, 0.2 );
       border-right: 1px solid rgba( variables.$black, 0.2 );
       border-bottom: 1px solid rgba( variables.$black, 0.2 );
 
@@ -45,7 +46,7 @@
     }
 
     &__heading {
-      font-size: clamp( variables.$font-base, 3vw, variables.$font-md );
+      font-size: clamp( variables.$font-md, 3vw, variables.$font-xl );
       font-weight: 700;
       color: variables.$primary;
 
@@ -68,6 +69,10 @@
       border-right: 1px solid rgba( variables.$black, 0.2 );
       border-bottom: 1px solid rgba( variables.$black, 0.2 );
 
+      &--label {
+        border-left: 1px solid rgba( variables.$black, 0.2 );
+      }
+
       &--premium {
         background: variables.$gray;
       }
@@ -76,7 +81,7 @@
         font-size: clamp( variables.$font-base, 3vw, variables.$font-md );
         font-weight: 700;
         color: variables.$black;
-        text-align: center;
+        text-align: left;
       }
 
       &__text {

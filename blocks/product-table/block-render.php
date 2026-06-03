@@ -50,7 +50,7 @@ $products_list = get_field( 'products_list' );
               $deluxe = $product['deluxe'];
               $premium = $product['premium'];
               ?>
-              <div class="product-table__products__body">
+              <div class="product-table__products__body product-table__products__body--label">
                 <h4 class="product-table__products__body__label">
                   <?= wp_kses_post( $label ); ?>
                 </h4>
