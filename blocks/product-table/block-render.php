@@ -81,7 +81,7 @@ $products_list = get_field( 'products_list' );
                     />
                 <?php endif; ?>
               </div>
-              <div class="product-table__products__body">
+              <div class="product-table__products__body product-table__products__body--premium">
                 <?php if ( $premium['text'] ) : ?>
                   <p class="product-table__products__body__text">
                     <?= wp_kses_post( $premium['text'] ); ?>
