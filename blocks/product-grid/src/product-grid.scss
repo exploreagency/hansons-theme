@@ -123,7 +123,7 @@
     }
 
     &__subheading {
-      font-size: clamp( variables.$font-base, 1vw, variables.$font-lg );
+      font-size: clamp( variables.$font-semi-md, 2vw, variables.$font-lg );
       font-weight: 700;
       color: variables.$primary;
       text-align: center;
