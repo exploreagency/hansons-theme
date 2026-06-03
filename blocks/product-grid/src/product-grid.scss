@@ -72,8 +72,8 @@
       position: absolute;
       top: 0;
       left: 50%;
-      width: 16.5rem;
-      height: 3rem;
+      width: 16.625rem;
+      height: 2.625rem;
       transform: translate( -50%, -50% );
       background: url('../../../src/icons/best-in-class.png');
       background-size: contain;
@@ -81,7 +81,7 @@
       font-weight: 700;
       color: variables.$white;
       text-align: center;
-      line-height: 3rem;
+      line-height: 2.625rem;
       z-index: 2;
     }
 
