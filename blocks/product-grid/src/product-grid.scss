@@ -193,12 +193,16 @@
       border-bottom: 1px solid rgba( variables.$black, 0.2 );
 
       &__heading {
-        width: 100%;
-        border-right: 1px solid rgba( variables.$black, 0.2 );
+        padding: 0.5rem 0;
         font-size: clamp( variables.$font-base, 3vw, variables.$font-md );
         font-weight: 700;
         color: variables.$black;
         text-align: left;
+
+        &__wrapper {
+          width: 100%;
+          border-right: 1px solid rgba( variables.$black, 0.2 );
+        }
       }
 
       &__content {

@@ -88,19 +88,21 @@ $products_list    = get_field( 'products_list' );
                       $feature_image = $feature['feature_image'];
                       ?>
                       <div class="product-grid__product__secondary-feature">
-                        <h6 class="product-grid__product__secondary-feature__heading">
-                          <?= wp_kses_post( $heading ); ?>
-                        </h6>
+                        <div class="product-grid__product__secondary-feature__heading__wrapper">
+                          <h6 class="product-grid__product__secondary-feature__heading">
+                            <?= wp_kses_post( $heading ); ?>
+                          </h6>
+                        </div>
                         <div class="product-grid__product__secondary-feature__content">
                           <?php if ( $feature_text ) : ?>
                             <p class="product-grid__product__secondary-feature__text">
                               <?= wp_kses_post( $feature_text ); ?>
                             </p>
                           <?php elseif ( $feature_image ) : ?>
-                            <img src="<?= esc_url( wp_get_attachment_image_src( $image, 'full' )[0] ); ?>"
-                                alt="<?= esc_attr( get_post_meta( $image, '_wp_attachment_image_alt', TRUE ) ); ?>"
-                                loading="lazy"
-                                class="product-grid__product__secondary-feature__image"
+                            <img src="<?= esc_url( wp_get_attachment_image_src( $feature_image, 'full' )[0] ); ?>"
+                                 alt="<?= esc_attr( get_post_meta( $feature_image, '_wp_attachment_image_alt', TRUE ) ); ?>"
+                                 loading="lazy"
+                                 class="product-grid__product__secondary-feature__image"
                               />
                           <?php endif; ?>
                         </div>
