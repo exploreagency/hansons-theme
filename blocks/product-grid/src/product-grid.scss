@@ -203,8 +203,8 @@
           justify-content: flex-start;
           align-items: center;
           width: 100%;
-          height: clamp( 3rem, 8vw, 4rem );
-          padding: 0 1rem;
+          min-height: clamp(4.5rem, 14vw, 5.75rem);
+			    padding: 0.875rem 1rem;
           border-right: 1px solid rgba( variables.$black, 0.2 );
         }
       }
@@ -214,8 +214,8 @@
         flex-direction: row;
         justify-content: center;
         align-items: center;
-        height: clamp( 3rem, 8vw, 4rem );
-        padding: 0 1rem;
+        min-height: clamp(4.5rem, 14vw, 5.75rem);
+		    padding: 0.875rem 1rem;
         background: variables.$gray;
       }
 
@@ -233,8 +233,11 @@
       }
 
       &__image {
+        display: block;
+        max-width: 100%;
         width: auto;
-        height: 2rem;
+        max-height: clamp(2rem, 10vw, 3.5rem);
+        height: auto;
         object-fit: contain;
       }
     }
