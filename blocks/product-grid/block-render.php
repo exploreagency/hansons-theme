@@ -75,7 +75,7 @@ $products_list    = get_field( 'products_list' );
                           @click="open = !open"
                           :aria-expanded="open.toString()"
                     >
-                      <span x-text="open ? '- Hide All Features' : '+ See All Features'"></span>
+                      <span x-text="open ? '— Hide All Features' : '+ See All Features'"></span>
                   </button>
                   <div class="product-grid__product__secondary-feature-list"
                        x-show="open"
