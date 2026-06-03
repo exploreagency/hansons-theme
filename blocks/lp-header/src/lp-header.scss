@@ -34,7 +34,7 @@
     width: 100%;
     height: auto;
 
-    @include mixins.desktop {
+    @include mixins.laptop {
       max-width: 9rem;
     }
 

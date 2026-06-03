@@ -25,11 +25,10 @@
     grid-template-columns: 1fr 1fr 1fr 1fr;
     align-items: stretch;
     width: 100%;
-    overflow-y: hidden;
 
     &__header {
       position: sticky;
-      top: 16rem;
+      top: 7.375rem;
       display: flex;
       flex-direction: row;
       align-items: flex-start;
