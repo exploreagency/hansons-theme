@@ -182,13 +182,18 @@
       @include mixins.laptop {
 				display: none;
 			}
+
+      &:nth-child(even) {
+        background: variables.$gray;
+      }
     }
 
     &__secondary-feature {
       display: grid;
       grid-template-columns: 1fr 1fr;
-      align-items: center;
+      align-items: stretch;
       width: 100%;
+      min-height: clamp(4.5rem, 14vw, 5.75rem);
       border-bottom: 1px solid rgba( variables.$black, 0.2 );
 
       &__heading {
@@ -216,7 +221,6 @@
         align-items: center;
         min-height: clamp(4.5rem, 14vw, 5.75rem);
 		    padding: 0.875rem 1rem;
-        background: variables.$gray;
       }
 
       &__text {
