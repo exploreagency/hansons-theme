@@ -22,7 +22,9 @@ $image            = get_field( 'image' );
     </div>
   <?php endif; ?>
 
-  <div class="page-hero__content">
+  <div class="page-hero__content"
+       id="contact"
+    >
     <?php if ( $heading ) : ?>
       <h1 class="page-hero__content__heading">
         <?= wp_kses_post( $heading ); ?>
