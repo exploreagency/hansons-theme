@@ -28,7 +28,7 @@
 
     &__header {
       position: sticky;
-      top: 7.5rem;
+      top: 7.4375rem;
       display: flex;
       flex-direction: row;
       align-items: flex-start;
@@ -39,6 +39,7 @@
       border-top: 1px solid rgba( variables.$black, 0.2 );
       border-right: 1px solid rgba( variables.$black, 0.2 );
       border-bottom: 1px solid variables.$secondary;
+      z-index: 2;
 
       &--left {
         justify-content: flex-start;
