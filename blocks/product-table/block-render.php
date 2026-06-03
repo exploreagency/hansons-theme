@@ -4,7 +4,7 @@
  */
 
 $heading       = get_field( 'heading' );
-$products_list = get_field( 'offer_disclosure' );
+$products_list = get_field( 'products_list' );
 ?>
 
 <section <?php echo vt_block_attributes( 'product-table', $block ); ?>>
