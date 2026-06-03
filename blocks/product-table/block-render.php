@@ -50,12 +50,12 @@ $products_list = get_field( 'products_list' );
               $deluxe = $product['deluxe'];
               $premium = $product['premium'];
               ?>
-              <div class="product-table__products__body product-table__products__body--label">
+              <div class="product-table__products__body product-table__products__body--label product-table__products__body--left">
                 <h4 class="product-table__products__body__label">
                   <?= wp_kses_post( $label ); ?>
                 </h4>
               </div>
-              <div class="product-table__products__body">
+              <div class="product-table__products__body product-table__products__body--center">
                 <?php if ( $classic['text'] ) : ?>
                   <p class="product-table__products__body__text">
                     <?= wp_kses_post( $classic['text'] ); ?>
@@ -68,7 +68,7 @@ $products_list = get_field( 'products_list' );
                     />
                 <?php endif; ?>
               </div>
-              <div class="product-table__products__body">
+              <div class="product-table__products__body product-table__products__body--center">
                 <?php if ( $deluxe['text'] ) : ?>
                   <p class="product-table__products__body__text">
                     <?= wp_kses_post( $deluxe['text'] ); ?>
@@ -81,7 +81,7 @@ $products_list = get_field( 'products_list' );
                     />
                 <?php endif; ?>
               </div>
-              <div class="product-table__products__body product-table__products__body--premium">
+              <div class="product-table__products__body product-table__products__body--premium product-table__products__body--center">
                 <?php if ( $premium['text'] ) : ?>
                   <p class="product-table__products__body__text">
                     <?= wp_kses_post( $premium['text'] ); ?>

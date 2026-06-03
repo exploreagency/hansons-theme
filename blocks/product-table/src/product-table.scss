@@ -38,6 +38,7 @@
 
       &--left {
         justify-content: flex-start;
+        border-left: 1px solid rgba( variables.$black, 0.2 );
       }
 
       &--center {
@@ -62,12 +63,19 @@
     &__body {
       display: flex;
       flex-direction: row;
-      justify-content: center;
       align-items: center;
       min-height: clamp(4.5rem, 14vw, 6rem);
       padding: 0.875rem 1rem;
       border-right: 1px solid rgba( variables.$black, 0.2 );
       border-bottom: 1px solid rgba( variables.$black, 0.2 );
+
+      &--left {
+        justify-content: left;
+      }
+
+      &--center {
+        justify-content: center;
+      }
 
       &--label {
         border-left: 1px solid rgba( variables.$black, 0.2 );
