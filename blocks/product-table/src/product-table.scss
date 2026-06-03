@@ -28,12 +28,13 @@
 
     &__header {
       position: sticky;
-      top: 2rem;
+      top: 16rem;
       display: flex;
       flex-direction: row;
       align-items: flex-start;
       width: 100%;
       min-height: clamp(5rem, 14vw, 7rem);
+      background: variables.$white;
 			padding: 0.875rem 1rem;
       border-top: 1px solid rgba( variables.$black, 0.2 );
       border-right: 1px solid rgba( variables.$black, 0.2 );
