@@ -41,7 +41,7 @@
     display: grid;
     grid-template-columns: 1fr;
     align-items: flex-start;
-    gap: 1.5rem;
+    gap: 2rem;
     width: 100%;
 
     @include mixins.tablet {
@@ -49,11 +49,11 @@
     }
 
     @include mixins.desktop {
-      gap: 1.5rem;
+      gap: 3rem;
     }
 
     @include mixins.widescreen {
-      gap: 2rem;
+      gap: 4rem;
     }
   }
 
