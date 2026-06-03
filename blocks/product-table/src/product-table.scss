@@ -5,13 +5,87 @@
 @use '../../../src/scss/abstracts/mixins';
 
 .product-grid {
+  display: none;
   width: 100%;
   background: linear-gradient( to bottom, variables.$white 59%, variables.$gray 100% );
+
+  @include mixins.laptop {
+    display: block;
+  }
 
   &__heading {
     font-size: clamp( variables.$font-lg, 5vw, variables.$font-3xl );
     color: variables.$primary;
     font-weight: 700;
     text-align: center;
+  }
+
+  &__products {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    align-items: stretch;
+    width: 100%;
+    min-height: clamp(5rem, 14vw, 7rem);
+    border-bottom: 1px solid rgba( variables.$black, 0.2 );
+
+    &__header {
+      display: flex;
+      flex-direction: row;
+      align-items: flex-start;
+      width: 100%;
+      min-height: clamp(5rem, 14vw, 7rem);
+			padding: 0.875rem 1rem;
+      border-right: 1px solid rgba( variables.$black, 0.2 );
+
+      &--left {
+        justify-content: flex-start;
+      }
+
+      &--center {
+        justify-content: center;
+      }
+    }
+
+    &__heading {
+      font-size: clamp( variables.$font-base, 3vw, variables.$font-md );
+      font-weight: 700;
+      color: variables.$black;
+      text-align: left;
+    }
+
+    &__body {
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+      align-items: center;
+      min-height: clamp(5rem, 14vw, 7rem);
+      padding: 0.875rem 1rem;
+
+      &--premium {
+        background: variables.$gray;
+      }
+
+      &__text {
+        font-size: clamp( variables.$font-base, 3vw, variables.$font-md );
+        font-weight: 400;
+        color: variables.$black;
+        text-align: center;
+
+        span {
+          font-size: clamp( variables.$font-semi-md, 3vw, variables.$font-lg );
+          font-weight: 700;
+          color: variables.$primary;
+        }
+      }
+
+      &__image {
+        display: block;
+        max-width: 100%;
+        width: auto;
+        max-height: clamp(3.5rem, 10vw, 5rem);
+        height: auto;
+        object-fit: contain;
+      }
+    }
   }
 }
