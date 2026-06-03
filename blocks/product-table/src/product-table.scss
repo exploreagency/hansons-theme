@@ -7,7 +7,6 @@
 .product-table {
   display: none;
   width: 100%;
-  background: linear-gradient( to bottom, variables.$white 59%, variables.$gray 100% );
 
   @include mixins.laptop {
     display: block;
@@ -25,8 +24,6 @@
     grid-template-columns: 1fr 1fr 1fr 1fr;
     align-items: stretch;
     width: 100%;
-    min-height: clamp(5rem, 14vw, 7rem);
-    border-bottom: 1px solid rgba( variables.$black, 0.2 );
 
     &__header {
       display: flex;
@@ -36,6 +33,7 @@
       min-height: clamp(5rem, 14vw, 7rem);
 			padding: 0.875rem 1rem;
       border-right: 1px solid rgba( variables.$black, 0.2 );
+      border-bottom: 1px solid rgba( variables.$black, 0.2 );
 
       &--left {
         justify-content: flex-start;
@@ -49,8 +47,15 @@
     &__heading {
       font-size: clamp( variables.$font-base, 3vw, variables.$font-md );
       font-weight: 700;
-      color: variables.$black;
-      text-align: left;
+      color: variables.$primary;
+
+      &--left {
+        text-align: left;
+      }
+
+      &--center {
+        text-align: center;
+      }
     }
 
     &__body {
@@ -58,11 +63,20 @@
       flex-direction: row;
       justify-content: center;
       align-items: center;
-      min-height: clamp(5rem, 14vw, 7rem);
+      min-height: clamp(4.5rem, 14vw, 6rem);
       padding: 0.875rem 1rem;
+      border-right: 1px solid rgba( variables.$black, 0.2 );
+      border-bottom: 1px solid rgba( variables.$black, 0.2 );
 
       &--premium {
         background: variables.$gray;
+      }
+
+      &__label {
+        font-size: clamp( variables.$font-base, 3vw, variables.$font-md );
+        font-weight: 700;
+        color: variables.$black;
+        text-align: center;
       }
 
       &__text {

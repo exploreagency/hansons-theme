@@ -24,22 +24,22 @@ $products_list = get_field( 'products_list' );
         <?php if ( $products_list ) : ?>
           <div class="product-table__products">
             <div class="product-table__products__header product-table__products__header--left">
-              <h3 class="product-table__products__heading">
+              <h3 class="product-table__products__heading product-table__products__heading--left">
                 Roofing package
               </h3>
             </div>
             <div class="product-table__products__header product-table__products__header--center">
-              <h3 class="product-table__products__heading">
+              <h3 class="product-table__products__heading product-table__products__heading--center">
                 CLASSIC <br>series
               </h3>
             </div>
             <div class="product-table__products__header product-table__products__header--center">
-              <h3 class="product-table__products__heading">
+              <h3 class="product-table__products__heading product-table__products__heading--center">
                 DELUXE <br>series
               </h3>
             </div>
             <div class="product-table__products__header product-table__products__header--center">
-              <h3 class="product-table__products__heading">
+              <h3 class="product-table__products__heading product-table__products__heading--center">
                 PREMIUM <br>series
               </h3>
             </div>
