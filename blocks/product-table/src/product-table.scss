@@ -4,7 +4,7 @@
 @use '../../../src/scss/abstracts/variables';
 @use '../../../src/scss/abstracts/mixins';
 
-.product-grid {
+.product-table {
   display: none;
   width: 100%;
   background: linear-gradient( to bottom, variables.$white 59%, variables.$gray 100% );
