@@ -182,10 +182,6 @@
       @include mixins.laptop {
 				display: none;
 			}
-
-      &:nth-child(even) {
-        background: variables.$gray;
-      }
     }
 
     &__secondary-feature {
@@ -221,6 +217,7 @@
         align-items: center;
         min-height: clamp(4.5rem, 14vw, 5.75rem);
 		    padding: 0.875rem 1rem;
+        background: variables.$gray;
       }
 
       &__text {
