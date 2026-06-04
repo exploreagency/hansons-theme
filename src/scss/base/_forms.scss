@@ -52,10 +52,7 @@
 		resize: vertical;
 	}
 
-	/* =========================================================
-	   Step 1: ZIP in hero
-	   ========================================================= */
-
+	/* Step 1: ZIP in hero */
 	.wpforms-page-1 {
 		width: 100%;
 
@@ -109,10 +106,7 @@
 		}
 	}
 
-	/* =========================================================
-	   Shared buttons
-	   ========================================================= */
-
+	/* Shared buttons */
 	.wpforms-page-prev,
 	.wpforms-page-next,
 	.wpforms-submit {
@@ -160,10 +154,7 @@
 		}
 	}
 
-	/* =========================================================
-	   Steps 2 and 3: modal overlay
-	   ========================================================= */
-
+	/* Modal overlay */
 	.wpforms-page-2,
 	.wpforms-page-3 {
 		position: fixed;
@@ -181,15 +172,22 @@
 		}
 	}
 
-	.wpforms-page-2.is-scheduler-modal-open,
-	.wpforms-page-3.is-scheduler-modal-open {
+	.wpforms-page-2.is-scheduler-modal-open {
 		display: flex !important;
 		flex-direction: column;
 	}
 
-	/* =========================================================
-	   Step 2: date/time modal panel
-	   ========================================================= */
+	.wpforms-page-3.is-scheduler-modal-open {
+		display: block !important;
+	}
+
+	/* Step 2: date/time modal panel */
+	.wpforms-page-2 {
+		> .wpforms-field-html {
+			width: min(72.5rem, 100%);
+			margin: auto;
+		}
+	}
 
 	.scheduler-modal-panel {
 		width: min(72.5rem, 100%);
@@ -209,32 +207,13 @@
 			border-radius: $rounded-xl;
 			padding: 3.5rem 3rem;
 		}
-	}
 
-	.wpforms-page-2 {
-		> .wpforms-field-html {
-			width: min(72.5rem, 100%);
-			margin: auto;
-		}
-
-		> .wpforms-pagebreak-left {
-			position: relative;
-			z-index: 2;
-			width: min(72.5rem, 100%);
-			margin: -5rem auto 0;
-			padding: 0 1.125rem 2rem;
+		.scheduler-modal-panel__controls,
+		.wpforms-pagebreak-left {
+			width: 100%;
+			margin: 2rem auto 0;
+			padding: 0;
 			text-align: center;
-
-			@include tablet {
-				padding-right: 1.75rem;
-				padding-left: 1.75rem;
-			}
-
-			@include laptop {
-				margin-top: -5.5rem;
-				padding-right: 3rem;
-				padding-left: 3rem;
-			}
 		}
 	}
 
@@ -410,89 +389,51 @@
 		color: $primary;
 	}
 
-	/* =========================================================
-	   Step 3: contact/details form
-	   ========================================================= */
-
+	/* Step 3: contact/details form */
 	.wpforms-page-3 {
-		background: $primary;
-
-		@include tablet {
-			background: rgba($black, 0.68);
-		}
-
 		&.is-scheduler-modal-open {
-			align-items: flex-start;
+			width: min(47.5rem, calc(100% - 2rem));
+			max-height: calc(100vh - 2rem);
+			margin: auto;
+			border-radius: $rounded-lg;
+			background: $primary;
+			color: $white;
+			padding: 2.125rem 1.125rem;
+			overflow-y: auto;
+			box-shadow: 0 1.5rem 5rem rgba($black, 0.35);
+
+			@include tablet {
+				width: min(47.5rem, calc(100% - 3rem));
+				max-height: calc(100vh - 4rem);
+				padding: 2.625rem 1.75rem;
+			}
+
+			@include laptop {
+				border-radius: $rounded-xl;
+				padding: 3.5rem 3rem;
+			}
 		}
 
 		> .wpforms-field,
 		> .wpforms-pagebreak-left,
 		> .wpforms-submit-container {
-			width: min(47.5rem, 100%);
+			width: 100%;
 			margin-right: auto;
 			margin-left: auto;
 		}
 
-		> .wpforms-field:not(.wpforms-field-hidden),
-		> .wpforms-pagebreak-left,
-		> .wpforms-submit-container {
-			background: $primary;
-		}
-
 		> .wpforms-field:not(.wpforms-field-hidden) {
-			margin-bottom: 0;
-			padding-right: 1.125rem;
-			padding-left: 1.125rem;
-
-			@include tablet {
-				padding-right: 1.75rem;
-				padding-left: 1.75rem;
-			}
-
-			@include laptop {
-				padding-right: 3rem;
-				padding-left: 3rem;
-			}
-
-			&:first-of-type {
-				padding-top: 2.125rem;
-				border-top-left-radius: $rounded-lg;
-				border-top-right-radius: $rounded-lg;
-
-				@include laptop {
-					padding-top: 3.5rem;
-					border-top-left-radius: $rounded-xl;
-					border-top-right-radius: $rounded-xl;
-				}
-			}
+			margin-bottom: 1rem;
+			padding: 0;
+			background: transparent;
 		}
 
 		> .wpforms-pagebreak-left,
 		> .wpforms-submit-container {
-			padding: 1rem 1.125rem 2rem;
+			padding: 1rem 0 0;
 			text-align: center;
-
-			@include tablet {
-				padding-right: 1.75rem;
-				padding-left: 1.75rem;
-			}
-
-			@include laptop {
-				padding-right: 3rem;
-				padding-left: 3rem;
-				padding-bottom: 3.5rem;
-			}
-		}
-
-		> .wpforms-submit-container {
-			border-bottom-right-radius: $rounded-lg;
-			border-bottom-left-radius: $rounded-lg;
-			box-shadow: 0 1.5rem 5rem rgba($black, 0.35);
-
-			@include laptop {
-				border-bottom-right-radius: $rounded-xl;
-				border-bottom-left-radius: $rounded-xl;
-			}
+			background: transparent;
+			box-shadow: none;
 		}
 
 		.appointment-details {
@@ -502,11 +443,6 @@
 			color: $primary;
 			padding: 1.5rem 1.25rem;
 			text-align: center;
-
-			@include tablet {
-				margin-bottom: 3rem;
-				padding: 1.75rem 2rem;
-			}
 
 			h3 {
 				margin: 0 0 0.75rem;
@@ -537,12 +473,6 @@
 			letter-spacing: 0.03em;
 		}
 
-		.wpforms-field-label {
-			color: $white;
-			font-size: $font-base;
-			margin-bottom: 0.5rem;
-		}
-
 		input[type='text'],
 		input[type='email'],
 		input[type='tel'],
@@ -556,18 +486,6 @@
 			color: $black;
 			padding: 1rem 1.25rem;
 			font-size: clamp($font-base, 1.7vw, $font-md);
-			line-height: $line-height;
-			box-shadow: none;
-		}
-
-		select {
-			appearance: auto;
-			cursor: pointer;
-		}
-
-		textarea {
-			min-height: 8rem;
-			resize: vertical;
 		}
 
 		.wpforms-field-text,
@@ -586,7 +504,6 @@
 			}
 		}
 
-		/* Services checkbox field */
 		.js-services-field {
 			margin-top: 1.75rem;
 			text-align: center;
@@ -611,6 +528,7 @@
 			}
 
 			li {
+				width: auto !important;
 				margin: 0 !important;
 				padding: 0 !important;
 			}
@@ -619,9 +537,12 @@
 				display: inline-flex;
 				align-items: center;
 				gap: 0.5rem;
+				width: auto;
+				max-width: none;
 				color: $white;
 				font-size: $font-base;
 				line-height: $line-height;
+				white-space: nowrap;
 				cursor: pointer;
 
 				@include tablet {
@@ -630,6 +551,7 @@
 			}
 
 			input[type='checkbox'] {
+				flex: 0 0 auto;
 				width: 1rem;
 				height: 1rem;
 				margin: 0;
@@ -638,7 +560,6 @@
 			}
 		}
 
-		/* Consent checkbox field */
 		.js-consent-field {
 			margin-top: 2rem;
 			text-align: left;
@@ -653,28 +574,36 @@
 
 			ul {
 				display: block;
+				width: 100%;
 				margin: 0;
 				padding: 0;
 				list-style: none;
 			}
 
 			li {
+				display: block;
+				width: 100% !important;
 				margin: 0 !important;
 				padding: 0 !important;
 			}
 
 			label {
-				display: grid;
-				grid-template-columns: 1rem 1fr;
+				display: flex;
 				align-items: flex-start;
 				gap: 0.75rem;
+				width: 100%;
+				max-width: none;
 				color: $white;
 				font-size: $font-base;
 				line-height: 1.55;
 				text-align: left;
+				white-space: normal;
+				word-break: normal;
+				overflow-wrap: normal;
 			}
 
 			input[type='checkbox'] {
+				flex: 0 0 1rem;
 				width: 1rem;
 				height: 1rem;
 				margin-top: 0.25rem;
@@ -686,15 +615,6 @@
 			color: lighten($accent, 30%);
 			font-size: $font-sm;
 			margin-top: 0.375rem;
-		}
-
-		.wpforms-page-prev,
-		.wpforms-submit {
-			width: 100%;
-
-			@include tablet {
-				width: auto;
-			}
 		}
 
 		.wpforms-submit {

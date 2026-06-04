@@ -12,11 +12,34 @@ export default function schedulerFormModal() {
 			}
 
 			this.$nextTick(() => {
+				this.movePageTwoControlsIntoPanel();
 				this.observeWpFormsPages();
 				this.bindKeyboardEvents();
 				this.bindPageButtonEvents();
 				this.syncModalState();
 			});
+		},
+
+		movePageTwoControlsIntoPanel() {
+			const pageTwo = this.getPage(2);
+
+			if (!pageTwo) {
+				return;
+			}
+
+			const modalPanel = pageTwo.querySelector('.scheduler-modal-panel');
+			const pageBreakControls = pageTwo.querySelector(':scope > .wpforms-pagebreak-left');
+
+			if (!modalPanel || !pageBreakControls) {
+				return;
+			}
+
+			if (modalPanel.contains(pageBreakControls)) {
+				return;
+			}
+
+			pageBreakControls.classList.add('scheduler-modal-panel__controls');
+			modalPanel.appendChild(pageBreakControls);
 		},
 
 		observeWpFormsPages() {
@@ -62,16 +85,28 @@ export default function schedulerFormModal() {
 		},
 
 		bindPageButtonEvents() {
-			const pageOneNextButton = this.getPage(1)?.querySelector('.wpforms-page-next');
-			const pageTwoNextButton = this.getPage(2)?.querySelector('.wpforms-page-next');
-			const pageTwoPrevButton = this.getPage(2)?.querySelector('.wpforms-page-prev');
-			const pageThreePrevButton = this.getPage(3)?.querySelector('.wpforms-page-prev');
+			const pageOneNextButton = this.getPage(1)
+				? this.getPage(1).querySelector('.wpforms-page-next')
+				: null;
+
+			const pageTwoNextButton = this.getPage(2)
+				? this.getPage(2).querySelector('.wpforms-page-next')
+				: null;
+
+			const pageTwoPrevButton = this.getPage(2)
+				? this.getPage(2).querySelector('.wpforms-page-prev')
+				: null;
+
+			const pageThreePrevButton = this.getPage(3)
+				? this.getPage(3).querySelector('.wpforms-page-prev')
+				: null;
 
 			if (pageOneNextButton) {
 				pageOneNextButton.addEventListener('click', () => {
 					this.previousActiveElement = document.activeElement;
 
 					window.requestAnimationFrame(() => {
+						this.movePageTwoControlsIntoPanel();
 						this.syncModalState();
 						this.focusActiveModal();
 					});
@@ -189,11 +224,6 @@ export default function schedulerFormModal() {
 				return false;
 			}
 
-			/*
-			 * WPForms usually toggles pages using inline display styles.
-			 * Prefer that state first so page 2 and page 3 are not both
-			 * treated as active modal pages.
-			 */
 			if (page.style.display) {
 				return page.style.display === 'block';
 			}
