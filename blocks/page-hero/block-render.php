@@ -32,8 +32,41 @@ $image            = get_field( 'image' );
     <?php endif; ?>
 
     <?php if ( $offer ) : ?>
-      <div class="page-hero__content__offer">
-        <?= wp_kses_post( $offer ); ?>
+      <div class="page-hero__content__offer"
+           x-data="disclosureModal"
+        >
+        <div class="page-hero__content__offer__text">
+          <?= wp_kses_post( $offer ); ?>
+        </div>
+
+        <?php if ( $offer_disclosure ) : ?>
+          <div class="page-hero__content__disclosure-modal"
+               x-show="isOpen"
+               x-cloak
+               @keydown.escape.window="closeModal"
+            >
+            <div class="page-hero__content__disclosure-modal__overlay" @click="closeModal"></div>
+
+            <div class="page-hero__content__disclosure-modal__panel"
+                 role="dialog"
+                 aria-modal="true"
+                 aria-labelledby="disclosure-modal-title"
+                 x-ref="modalPanel"
+              >
+              <button type="button"
+                      class="page-hero__content__disclosure-modal__close"
+                      aria-label="Close disclosure modal"
+                      @click="closeModal"
+                >
+                &times;
+              </button>
+
+              <div class="page-hero__content__disclosure-modal__content">
+                <?= wp_kses_post( $offer_disclosure ); ?>
+              </div>
+            </div>
+          </div>
+        <?php endif; ?>
       </div>  
     <?php endif; ?>
 

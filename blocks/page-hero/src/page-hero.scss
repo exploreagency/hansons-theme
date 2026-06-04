@@ -74,48 +74,203 @@
     }
 
     &__offer {
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      gap: 1rem;
-      width: 100%;
-      color: variables.$white;
-      text-align: center;
-
-      h2 {
-        font-size: clamp( variables.$font-xl, 5vw, variables.$font-super );
+      &__text {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 1rem;
+        width: 100%;
         color: variables.$white;
-        font-weight: 700;
         text-align: center;
-      }
 
-      h3 {
-        font-size: clamp( variables.$font-md, 5vw, variables.$font-2xl );
-        color: variables.$white;
-        font-weight: 500;
-        text-align: center;
-      }
+        h2 {
+          font-size: clamp( variables.$font-xl, 5vw, variables.$font-super );
+          color: variables.$white;
+          font-weight: 700;
+          text-align: center;
+        }
 
-      p {
-        font-size: clamp( variables.$font-base, 1vw, variables.$font-md );
-        color: variables.$white;
-        font-weight: 400;
-        text-align: center;
-      }
+        h3 {
+          font-size: clamp( variables.$font-md, 5vw, variables.$font-2xl );
+          color: variables.$white;
+          font-weight: 500;
+          text-align: center;
+        }
 
-      a {
-        color: variables.$white !important;
-        text-decoration: underline;
-        transition: all 0.15s ease-in-out;
+        p {
+          font-size: clamp( variables.$font-base, 1vw, variables.$font-md );
+          color: variables.$white;
+          font-weight: 400;
+          text-align: center;
+        }
 
-        &:hover {
+        a {
+          color: variables.$white !important;
+          text-decoration: underline;
+          transition: all 0.15s ease-in-out;
+
+          &:hover {
+            color: variables.$secondary;
+          }
+        }
+
+        span {
           color: variables.$secondary;
         }
       }
+    }
 
-      span {
-        color: variables.$secondary;
+    &__disclosure-modal {
+      position: fixed;
+      inset: 0;
+      z-index: 999999;
+      display: flex;
+      align-items: flex-start;
+      justify-content: center;
+      padding: 5rem 1rem 2rem;
+      overflow-y: auto;
+
+      @include mixins.tablet {
+        padding: 6rem 1.5rem 3rem;
+      }
+
+      @include mixins.laptop {
+        padding: 7rem variables.$container-padding 4rem;
+      }
+
+      &__overlay {
+        position: fixed;
+        inset: 0;
+        background: rgba( variables.$black, 0.55 );
+      }
+
+      &__panel {
+        position: relative;
+        z-index: 1;
+        width: min( 108rem, 100% );
+        background: variables.$white;
+        color: variables.$black;
+        box-shadow: 0 1.5rem 5rem rgba( variables.$black, 0.28 );
+        outline: none;
+      }
+
+      &__close {
+        position: absolute;
+        top: 1rem;
+        right: 1rem;
+        z-index: 2;
+        appearance: none;
+        border: 0;
+        background: transparent;
+        color: variables.$black;
+        padding: 0;
+        font-size: 2.25rem;
+        line-height: 1;
+        cursor: pointer;
+        transition: color 0.18s ease;
+
+        @include mixins.tablet {
+          top: 1.25rem;
+          right: 1.5rem;
+        }
+
+        &:hover,
+        &:focus-visible {
+          color: variables.$primary;
+        }
+      }
+
+      &__content {
+        padding: 3.5rem 1.5rem 2.5rem;
+
+        @include mixins.tablet {
+          padding: 4rem 2rem 3rem;
+        }
+
+        @include mixins.laptop {
+          padding: 4.5rem 2.5rem 3.5rem;
+        }
+
+        h1,
+        h2,
+        h3,
+        h4,
+        h5,
+        h6 {
+          margin: 0 0 1.25rem;
+          color: variables.$black;
+          font-size: clamp( variables.$font-md, 1.7vw, variables.$font-xl );
+          font-weight: 800;
+          line-height: variables.$line-height;
+        }
+
+        p {
+          margin: 0 0 1.25rem;
+          color: variables.$black;
+          font-size: clamp( variables.$font-base, 1.25vw, variables.$font-semi-md );
+          line-height: 1.45;
+
+          &:last-child {
+            margin-bottom: 0;
+          }
+        }
+
+        strong,
+        b {
+          font-weight: 800;
+        }
+
+        a {
+          color: variables.$primary;
+          font-weight: 700;
+          text-decoration: underline;
+          text-underline-offset: 0.15em;
+
+          &:hover,
+          &:focus-visible {
+            color: variables.$secondary;
+          }
+        }
+
+        ul,
+        ol {
+          margin: 0 0 1.25rem 1.25rem;
+          padding: 0;
+          color: variables.$black;
+          font-size: clamp( variables.$font-base, 1.25vw, variables.$font-semi-md );
+          line-height: 1.45;
+        }
+
+        li {
+          margin-bottom: 0.5rem;
+
+          &:last-child {
+            margin-bottom: 0;
+          }
+        }
+      }
+
+      &__lender {
+        margin-top: 2rem;
+        color: rgba( variables.$primary, 0.45 );
+        font-size: variables.$font-sm;
+        font-weight: 700;
+        line-height: 1.1;
+        text-transform: uppercase;
+
+        @include mixins.tablet {
+          margin-top: 2.5rem;
+        }
+
+        span,
+        strong {
+          display: block;
+        }
+
+        strong {
+          font-size: variables.$font-md;
+        }
       }
     }
 
@@ -125,4 +280,8 @@
       width: 100%;
     }
   }
+}
+
+body.disclosure-modal-is-open {
+	overflow: hidden;
 }
