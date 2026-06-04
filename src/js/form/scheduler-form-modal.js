@@ -176,7 +176,11 @@ export default function schedulerFormModal() {
 		},
 
 		observeWpFormsPages() {
-			const pages = [this.getPage(2), this.getPage(3), this.getPage(4)].filter(Boolean);
+			const pages = [
+				this.getPage(2),
+				this.getPage(3),
+				this.getPage(4),
+			].filter(Boolean);
 
 			if (!pages.length) {
 				return;
@@ -232,7 +236,12 @@ export default function schedulerFormModal() {
 				});
 			}
 
-			[pageTwoNextButton, pageThreeNextButton, pageThreePrevButton, pageFourPrevButton].forEach((button) => {
+			[
+				pageTwoNextButton,
+				pageThreeNextButton,
+				pageThreePrevButton,
+				pageFourPrevButton,
+			].forEach((button) => {
 				if (!button) {
 					return;
 				}
@@ -256,35 +265,21 @@ export default function schedulerFormModal() {
 		},
 
 		syncModalState() {
-			const pageTwo = this.getPage(2);
-			const pageThree = this.getPage(3);
-			const pageFour = this.getPage(4);
+			const pages = [
+				this.getPage(2),
+				this.getPage(3),
+				this.getPage(4),
+			].filter(Boolean);
 
-			const pageTwoVisible = this.isWpFormsPageVisible(pageTwo);
-			const pageThreeVisible = this.isWpFormsPageVisible(pageThree);
-			const pageFourVisible = this.isWpFormsPageVisible(pageFour);
+			const activePage = this.getActiveModalPage();
 
-			if (pageTwo) {
-				pageTwo.classList.toggle(
-					'is-scheduler-modal-open',
-					pageTwoVisible && !pageThreeVisible && !pageFourVisible
-				);
-			}
-
-			if (pageThree) {
-				pageThree.classList.toggle(
-					'is-scheduler-modal-open',
-					pageThreeVisible && !pageFourVisible
-				);
-			}
-
-			if (pageFour) {
-				pageFour.classList.toggle('is-scheduler-modal-open', pageFourVisible);
-			}
+			pages.forEach((page) => {
+				page.classList.toggle('is-scheduler-modal-open', page === activePage);
+			});
 
 			document.body.classList.toggle(
 				'scheduler-modal-is-open',
-				pageTwoVisible || pageThreeVisible || pageFourVisible
+				Boolean(activePage)
 			);
 		},
 
@@ -355,13 +350,17 @@ export default function schedulerFormModal() {
 				return false;
 			}
 
+			if (page.hidden) {
+				return false;
+			}
+
 			if (page.style.display) {
-				return page.style.display === 'block';
+				return page.style.display !== 'none';
 			}
 
 			const style = window.getComputedStyle(page);
 
-			return style.display !== 'none' && !page.hidden;
+			return style.display !== 'none';
 		},
 	};
 }
