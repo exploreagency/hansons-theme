@@ -12,12 +12,17 @@ export default function schedulerFormModal() {
 			}
 
 			this.$nextTick(() => {
-				this.movePageTwoControlsIntoPanel();
+				this.prepareModalPanels();
 				this.observeWpFormsPages();
 				this.bindKeyboardEvents();
 				this.bindPageButtonEvents();
 				this.syncModalState();
 			});
+		},
+
+		prepareModalPanels() {
+			this.movePageTwoControlsIntoPanel();
+			this.wrapPageThreeContentInPanel();
 		},
 
 		movePageTwoControlsIntoPanel() {
@@ -28,7 +33,9 @@ export default function schedulerFormModal() {
 			}
 
 			const modalPanel = pageTwo.querySelector('.scheduler-modal-panel');
-			const pageBreakControls = pageTwo.querySelector(':scope > .wpforms-pagebreak-left');
+			const pageBreakControls = pageTwo.querySelector(
+				'.wpforms-pagebreak-left, .wpforms-pagebreak-center, .wpforms-pagebreak-right'
+			);
 
 			if (!modalPanel || !pageBreakControls) {
 				return;
@@ -42,6 +49,38 @@ export default function schedulerFormModal() {
 			modalPanel.appendChild(pageBreakControls);
 		},
 
+		wrapPageThreeContentInPanel() {
+			const pageThree = this.getPage(3);
+
+			if (!pageThree) {
+				return;
+			}
+
+			if (pageThree.querySelector(':scope > .scheduler-contact-panel')) {
+				return;
+			}
+
+			const contactPanel = document.createElement('div');
+
+			contactPanel.className = 'scheduler-contact-panel';
+
+			const childrenToMove = Array.from(pageThree.children).filter((child) => {
+				return (
+					child.classList.contains('wpforms-field') ||
+					child.classList.contains('wpforms-pagebreak-left') ||
+					child.classList.contains('wpforms-pagebreak-center') ||
+					child.classList.contains('wpforms-pagebreak-right') ||
+					child.classList.contains('wpforms-submit-container')
+				);
+			});
+
+			childrenToMove.forEach((child) => {
+				contactPanel.appendChild(child);
+			});
+
+			pageThree.appendChild(contactPanel);
+		},
+
 		observeWpFormsPages() {
 			const pages = [this.getPage(2), this.getPage(3)].filter(Boolean);
 
@@ -50,12 +89,15 @@ export default function schedulerFormModal() {
 			}
 
 			this.observer = new MutationObserver(() => {
+				this.prepareModalPanels();
 				this.syncModalState();
 			});
 
 			pages.forEach((page) => {
 				this.observer.observe(page, {
 					attributes: true,
+					childList: true,
+					subtree: false,
 					attributeFilter: ['style', 'class', 'hidden'],
 				});
 			});
@@ -85,28 +127,17 @@ export default function schedulerFormModal() {
 		},
 
 		bindPageButtonEvents() {
-			const pageOneNextButton = this.getPage(1)
-				? this.getPage(1).querySelector('.wpforms-page-next')
-				: null;
-
-			const pageTwoNextButton = this.getPage(2)
-				? this.getPage(2).querySelector('.wpforms-page-next')
-				: null;
-
-			const pageTwoPrevButton = this.getPage(2)
-				? this.getPage(2).querySelector('.wpforms-page-prev')
-				: null;
-
-			const pageThreePrevButton = this.getPage(3)
-				? this.getPage(3).querySelector('.wpforms-page-prev')
-				: null;
+			const pageOneNextButton = this.getPage(1)?.querySelector('.wpforms-page-next');
+			const pageTwoNextButton = this.getPage(2)?.querySelector('.wpforms-page-next');
+			const pageTwoPrevButton = this.getPage(2)?.querySelector('.wpforms-page-prev');
+			const pageThreePrevButton = this.getPage(3)?.querySelector('.wpforms-page-prev');
 
 			if (pageOneNextButton) {
 				pageOneNextButton.addEventListener('click', () => {
 					this.previousActiveElement = document.activeElement;
 
 					window.requestAnimationFrame(() => {
-						this.movePageTwoControlsIntoPanel();
+						this.prepareModalPanels();
 						this.syncModalState();
 						this.focusActiveModal();
 					});
@@ -116,6 +147,7 @@ export default function schedulerFormModal() {
 			if (pageTwoNextButton) {
 				pageTwoNextButton.addEventListener('click', () => {
 					window.requestAnimationFrame(() => {
+						this.prepareModalPanels();
 						this.syncModalState();
 						this.focusActiveModal();
 					});

@@ -52,7 +52,10 @@
 		resize: vertical;
 	}
 
-	/* Step 1: ZIP in hero */
+	/* =========================================================
+	   Step 1: ZIP in hero
+	   ========================================================= */
+
 	.wpforms-page-1 {
 		width: 100%;
 
@@ -106,7 +109,10 @@
 		}
 	}
 
-	/* Shared buttons */
+	/* =========================================================
+	   Shared buttons
+	   ========================================================= */
+
 	.wpforms-page-prev,
 	.wpforms-page-next,
 	.wpforms-submit {
@@ -154,7 +160,10 @@
 		}
 	}
 
-	/* Modal overlay */
+	/* =========================================================
+	   Modal overlay
+	   ========================================================= */
+
 	.wpforms-page-2,
 	.wpforms-page-3 {
 		position: fixed;
@@ -172,16 +181,16 @@
 		}
 	}
 
-	.wpforms-page-2.is-scheduler-modal-open {
+	.wpforms-page-2.is-scheduler-modal-open,
+	.wpforms-page-3.is-scheduler-modal-open {
 		display: flex !important;
 		flex-direction: column;
 	}
 
-	.wpforms-page-3.is-scheduler-modal-open {
-		display: block !important;
-	}
+	/* =========================================================
+	   Step 2: Date/time modal panel
+	   ========================================================= */
 
-	/* Step 2: date/time modal panel */
 	.wpforms-page-2 {
 		> .wpforms-field-html {
 			width: min(72.5rem, 100%);
@@ -209,7 +218,9 @@
 		}
 
 		.scheduler-modal-panel__controls,
-		.wpforms-pagebreak-left {
+		.wpforms-pagebreak-left,
+		.wpforms-pagebreak-center,
+		.wpforms-pagebreak-right {
 			width: 100%;
 			margin: 2rem auto 0;
 			padding: 0;
@@ -389,33 +400,35 @@
 		color: $primary;
 	}
 
-	/* Step 3: contact/details form */
-	.wpforms-page-3 {
-		&.is-scheduler-modal-open {
-			width: min(47.5rem, calc(100% - 2rem));
-			max-height: calc(100vh - 2rem);
-			margin: auto;
-			border-radius: $rounded-lg;
-			background: $primary;
-			color: $white;
-			padding: 2.125rem 1.125rem;
-			overflow-y: auto;
-			box-shadow: 0 1.5rem 5rem rgba($black, 0.35);
+	/* =========================================================
+	   Step 3: Contact/details modal panel
+	   ========================================================= */
 
-			@include tablet {
-				width: min(47.5rem, calc(100% - 3rem));
-				max-height: calc(100vh - 4rem);
-				padding: 2.625rem 1.75rem;
-			}
+	.scheduler-contact-panel {
+		width: min(47.5rem, 100%);
+		max-height: calc(100vh - 2rem);
+		margin: auto;
+		border-radius: $rounded-lg;
+		background: $primary;
+		color: $white;
+		padding: 2.125rem 1.125rem;
+		overflow-y: auto;
+		box-shadow: 0 1.5rem 5rem rgba($black, 0.35);
 
-			@include laptop {
-				border-radius: $rounded-xl;
-				padding: 3.5rem 3rem;
-			}
+		@include tablet {
+			max-height: calc(100vh - 4rem);
+			padding: 2.625rem 1.75rem;
+		}
+
+		@include laptop {
+			border-radius: $rounded-xl;
+			padding: 3.5rem 3rem;
 		}
 
 		> .wpforms-field,
 		> .wpforms-pagebreak-left,
+		> .wpforms-pagebreak-center,
+		> .wpforms-pagebreak-right,
 		> .wpforms-submit-container {
 			width: 100%;
 			margin-right: auto;
@@ -429,13 +442,18 @@
 		}
 
 		> .wpforms-pagebreak-left,
+		> .wpforms-pagebreak-center,
+		> .wpforms-pagebreak-right,
 		> .wpforms-submit-container {
-			padding: 1rem 0 0;
+			margin-top: 1.5rem;
+			padding: 0;
 			text-align: center;
 			background: transparent;
 			box-shadow: none;
 		}
+	}
 
+	.wpforms-page-3 {
 		.appointment-details {
 			width: min(36rem, 100%);
 			margin: 0 auto 2.5rem;
@@ -443,6 +461,11 @@
 			color: $primary;
 			padding: 1.5rem 1.25rem;
 			text-align: center;
+
+			@include tablet {
+				margin-bottom: 3rem;
+				padding: 1.75rem 2rem;
+			}
 
 			h3 {
 				margin: 0 0 0.75rem;
@@ -473,6 +496,12 @@
 			letter-spacing: 0.03em;
 		}
 
+		.wpforms-field-label {
+			color: $white;
+			font-size: $font-base;
+			margin-bottom: 0.5rem;
+		}
+
 		input[type='text'],
 		input[type='email'],
 		input[type='tel'],
@@ -486,6 +515,22 @@
 			color: $black;
 			padding: 1rem 1.25rem;
 			font-size: clamp($font-base, 1.7vw, $font-md);
+			line-height: $line-height;
+			box-shadow: none;
+
+			&::placeholder {
+				color: rgba($black, 0.4);
+			}
+		}
+
+		select {
+			appearance: auto;
+			cursor: pointer;
+		}
+
+		textarea {
+			min-height: 8rem;
+			resize: vertical;
 		}
 
 		.wpforms-field-text,
@@ -504,6 +549,7 @@
 			}
 		}
 
+		/* Services checkbox field */
 		.js-services-field {
 			margin-top: 1.75rem;
 			text-align: center;
@@ -560,6 +606,7 @@
 			}
 		}
 
+		/* Consent checkbox field */
 		.js-consent-field {
 			margin-top: 2rem;
 			text-align: left;
