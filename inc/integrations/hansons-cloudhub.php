@@ -20,11 +20,11 @@ add_action( 'rest_api_init', function () {
 function hansons_get_schedule_availability( WP_REST_Request $request ) {
   $zip_code = $request->get_param( 'zipCodeID' );
 
-  if ( !preg_match('/^\d{5}$/', $zip_code ) ) {
-    return new WP_REST_Response([
+  if ( !preg_match( '/^\d{5}$/', $zip_code ) ) {
+    return new WP_REST_Response( [
       'success' => false,
       'message' => 'Invalid ZIP code.',
-    ], 400);
+    ], 400 );
   }
 
   if (
