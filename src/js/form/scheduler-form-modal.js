@@ -2,6 +2,7 @@ export default function schedulerFormModal() {
 	return {
 		form: null,
 		observer: null,
+		previousActiveElement: null,
 
 		init() {
 			this.form = this.$root.querySelector('.hero-scheduler-form');
@@ -11,38 +12,15 @@ export default function schedulerFormModal() {
 			}
 
 			this.$nextTick(() => {
-				this.bindModalEvents();
 				this.observeWpFormsPages();
+				this.bindKeyboardEvents();
+				this.bindPageButtonEvents();
 				this.syncModalState();
 			});
 		},
 
-		bindModalEvents() {
-			document.addEventListener('keydown', (event) => {
-				if (event.key !== 'Escape') {
-					return;
-				}
-
-				if (!this.isModalOpen()) {
-					return;
-				}
-
-				const activePage = this.getActiveModalPage();
-				const previousButton = activePage
-					? activePage.querySelector('.wpforms-page-prev')
-					: null;
-
-				if (previousButton) {
-					previousButton.click();
-				}
-			});
-		},
-
 		observeWpFormsPages() {
-			const pages = [
-				this.getPage(2),
-				this.getPage(3),
-			].filter(Boolean);
+			const pages = [this.getPage(2), this.getPage(3)].filter(Boolean);
 
 			if (!pages.length) {
 				return;
@@ -55,9 +33,77 @@ export default function schedulerFormModal() {
 			pages.forEach((page) => {
 				this.observer.observe(page, {
 					attributes: true,
-					attributeFilter: ['style', 'class'],
+					attributeFilter: ['style', 'class', 'hidden'],
 				});
 			});
+		},
+
+		bindKeyboardEvents() {
+			document.addEventListener('keydown', (event) => {
+				if (event.key !== 'Escape') {
+					return;
+				}
+
+				const activePage = this.getActiveModalPage();
+
+				if (!activePage) {
+					return;
+				}
+
+				const previousButton = activePage.querySelector('.wpforms-page-prev');
+
+				if (previousButton) {
+					previousButton.click();
+					return;
+				}
+
+				this.closeModalClasses();
+			});
+		},
+
+		bindPageButtonEvents() {
+			const pageOneNextButton = this.getPage(1)?.querySelector('.wpforms-page-next');
+			const pageTwoNextButton = this.getPage(2)?.querySelector('.wpforms-page-next');
+			const pageTwoPrevButton = this.getPage(2)?.querySelector('.wpforms-page-prev');
+			const pageThreePrevButton = this.getPage(3)?.querySelector('.wpforms-page-prev');
+
+			if (pageOneNextButton) {
+				pageOneNextButton.addEventListener('click', () => {
+					this.previousActiveElement = document.activeElement;
+
+					window.requestAnimationFrame(() => {
+						this.syncModalState();
+						this.focusActiveModal();
+					});
+				});
+			}
+
+			if (pageTwoNextButton) {
+				pageTwoNextButton.addEventListener('click', () => {
+					window.requestAnimationFrame(() => {
+						this.syncModalState();
+						this.focusActiveModal();
+					});
+				});
+			}
+
+			if (pageTwoPrevButton) {
+				pageTwoPrevButton.addEventListener('click', () => {
+					window.requestAnimationFrame(() => {
+						this.syncModalState();
+						this.restoreFocus();
+					});
+				});
+			}
+
+			if (pageThreePrevButton) {
+				pageThreePrevButton.addEventListener('click', () => {
+					window.requestAnimationFrame(() => {
+						this.syncModalState();
+						this.focusActiveModal();
+					});
+				});
+			}
 		},
 
 		syncModalState() {
@@ -68,7 +114,10 @@ export default function schedulerFormModal() {
 			const pageThreeVisible = this.isWpFormsPageVisible(pageThree);
 
 			if (pageTwo) {
-				pageTwo.classList.toggle('is-scheduler-modal-open', pageTwoVisible);
+				pageTwo.classList.toggle(
+					'is-scheduler-modal-open',
+					pageTwoVisible && !pageThreeVisible
+				);
 			}
 
 			if (pageThree) {
@@ -79,6 +128,41 @@ export default function schedulerFormModal() {
 				'scheduler-modal-is-open',
 				pageTwoVisible || pageThreeVisible
 			);
+		},
+
+		closeModalClasses() {
+			const pageTwo = this.getPage(2);
+			const pageThree = this.getPage(3);
+
+			if (pageTwo) {
+				pageTwo.classList.remove('is-scheduler-modal-open');
+			}
+
+			if (pageThree) {
+				pageThree.classList.remove('is-scheduler-modal-open');
+			}
+
+			document.body.classList.remove('scheduler-modal-is-open');
+		},
+
+		focusActiveModal() {
+			const activePage = this.getActiveModalPage();
+
+			if (!activePage) {
+				return;
+			}
+
+			activePage.setAttribute('tabindex', '-1');
+			activePage.focus({ preventScroll: true });
+		},
+
+		restoreFocus() {
+			if (
+				this.previousActiveElement &&
+				typeof this.previousActiveElement.focus === 'function'
+			) {
+				this.previousActiveElement.focus({ preventScroll: true });
+			}
 		},
 
 		getPage(pageNumber) {
@@ -100,16 +184,22 @@ export default function schedulerFormModal() {
 			return null;
 		},
 
-		isModalOpen() {
-			return Boolean(this.getActiveModalPage());
-		},
-
 		isWpFormsPageVisible(page) {
 			if (!page) {
 				return false;
 			}
 
-			return window.getComputedStyle(page).display !== 'none';
+			/*
+			 * WPForms generally toggles pages with inline display styles.
+			 * This keeps page 2/page 3 from both being treated as active.
+			 */
+			if (page.style.display) {
+				return page.style.display === 'block';
+			}
+
+			const style = window.getComputedStyle(page);
+
+			return style.display !== 'none' && !page.hidden;
 		},
 	};
 }
