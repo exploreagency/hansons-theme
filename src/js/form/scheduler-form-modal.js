@@ -190,8 +190,9 @@ export default function schedulerFormModal() {
 			}
 
 			/*
-			 * WPForms generally toggles pages with inline display styles.
-			 * This keeps page 2/page 3 from both being treated as active.
+			 * WPForms usually toggles pages using inline display styles.
+			 * Prefer that state first so page 2 and page 3 are not both
+			 * treated as active modal pages.
 			 */
 			if (page.style.display) {
 				return page.style.display === 'block';
