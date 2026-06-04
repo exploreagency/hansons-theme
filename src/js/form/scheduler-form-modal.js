@@ -3,6 +3,7 @@ export default function schedulerFormModal() {
 		form: null,
 		observer: null,
 		previousActiveElement: null,
+		expectedPage: null,
 
 		init() {
 			this.form = this.$root.querySelector('.hero-scheduler-form');
@@ -12,7 +13,7 @@ export default function schedulerFormModal() {
 			}
 
 			this.$nextTick(() => {
-				this.prepareModalPanels();
+				this.prepareBaseModalPanels();
 				this.observeWpFormsPages();
 				this.bindKeyboardEvents();
 				this.bindPageButtonEvents();
@@ -20,12 +21,24 @@ export default function schedulerFormModal() {
 			});
 		},
 
-		prepareModalPanels() {
+		prepareBaseModalPanels() {
 			this.movePageTwoControlsIntoPanel();
 			this.wrapPageInPanel(3, 'scheduler-contact-panel');
+			this.addModalCloseButtons();
+		},
+
+		prepareConfirmationPanel() {
 			this.wrapPageInPanel(4, 'scheduler-confirmation-panel');
 			this.moveSubmitContainerIntoConfirmationPanel();
 			this.addModalCloseButtons();
+		},
+
+		prepareAllModalPanels() {
+			this.prepareBaseModalPanels();
+
+			if (this.expectedPage === 4 || this.isWpFormsPageVisible(this.getPage(4))) {
+				this.prepareConfirmationPanel();
+			}
 		},
 
 		movePageTwoControlsIntoPanel() {
@@ -138,6 +151,8 @@ export default function schedulerFormModal() {
 		},
 
 		closeToFirstStep() {
+			this.expectedPage = null;
+
 			this.forceShowPage(1);
 			this.forceHidePage(2);
 			this.forceHidePage(3);
@@ -145,6 +160,16 @@ export default function schedulerFormModal() {
 
 			this.closeModalClasses();
 			this.restoreFocus();
+		},
+
+		forceShowOnlyPage(pageNumber) {
+			[1, 2, 3, 4].forEach((currentPageNumber) => {
+				if (currentPageNumber === pageNumber) {
+					this.forceShowPage(currentPageNumber);
+				} else {
+					this.forceHidePage(currentPageNumber);
+				}
+			});
 		},
 
 		forceShowPage(pageNumber) {
@@ -156,7 +181,6 @@ export default function schedulerFormModal() {
 
 			page.style.display = 'block';
 			page.hidden = false;
-			page.classList.remove('is-scheduler-modal-open');
 		},
 
 		forceHidePage(pageNumber) {
@@ -187,7 +211,8 @@ export default function schedulerFormModal() {
 			}
 
 			this.observer = new MutationObserver(() => {
-				this.prepareModalPanels();
+				this.prepareAllModalPanels();
+				this.enforceExpectedPage();
 				this.syncModalState();
 			});
 
@@ -227,41 +252,99 @@ export default function schedulerFormModal() {
 			if (pageOneNextButton) {
 				pageOneNextButton.addEventListener('click', () => {
 					this.previousActiveElement = document.activeElement;
+					this.expectedPage = 2;
 
 					window.requestAnimationFrame(() => {
-						this.prepareModalPanels();
+						this.prepareAllModalPanels();
 						this.syncModalState();
 						this.focusActiveModal();
 					});
 				});
 			}
 
-			[
-				pageTwoNextButton,
-				pageThreeNextButton,
-				pageThreePrevButton,
-				pageFourPrevButton,
-			].forEach((button) => {
-				if (!button) {
-					return;
-				}
+			if (pageTwoNextButton) {
+				pageTwoNextButton.addEventListener('click', () => {
+					this.expectedPage = 3;
 
-				button.addEventListener('click', () => {
-					window.requestAnimationFrame(() => {
-						this.prepareModalPanels();
+					window.setTimeout(() => {
+						this.prepareAllModalPanels();
+						this.enforceExpectedPage();
 						this.syncModalState();
 						this.focusActiveModal();
-					});
+					}, 0);
 				});
-			});
+			}
+
+			if (pageThreeNextButton) {
+				pageThreeNextButton.addEventListener('click', () => {
+					this.expectedPage = 4;
+
+					window.setTimeout(() => {
+						this.prepareConfirmationPanel();
+						this.enforceExpectedPage();
+						this.syncModalState();
+						this.focusActiveModal();
+					}, 0);
+				});
+			}
 
 			if (pageTwoPrevButton) {
 				pageTwoPrevButton.addEventListener('click', () => {
+					this.expectedPage = 1;
+
 					window.requestAnimationFrame(() => {
 						this.closeToFirstStep();
 					});
 				});
 			}
+
+			if (pageThreePrevButton) {
+				pageThreePrevButton.addEventListener('click', () => {
+					this.expectedPage = 2;
+
+					window.setTimeout(() => {
+						this.enforceExpectedPage();
+						this.syncModalState();
+						this.focusActiveModal();
+					}, 0);
+				});
+			}
+
+			if (pageFourPrevButton) {
+				pageFourPrevButton.addEventListener('click', () => {
+					this.expectedPage = 3;
+
+					window.setTimeout(() => {
+						this.enforceExpectedPage();
+						this.syncModalState();
+						this.focusActiveModal();
+					}, 0);
+				});
+			}
+		},
+
+		enforceExpectedPage() {
+			if (!this.expectedPage || this.expectedPage === 1) {
+				return;
+			}
+
+			const expectedPageElement = this.getPage(this.expectedPage);
+
+			if (!expectedPageElement) {
+				return;
+			}
+
+			const activePage = this.getHighestVisiblePage();
+
+			if (activePage === expectedPageElement) {
+				return;
+			}
+
+			/*
+			 * WPForms can briefly expose the final page during transitions after
+			 * the DOM is restructured for modal panels. Force the expected step.
+			 */
+			this.forceShowOnlyPage(this.expectedPage);
 		},
 
 		syncModalState() {
@@ -326,6 +409,18 @@ export default function schedulerFormModal() {
 		},
 
 		getActiveModalPage() {
+			if (this.expectedPage && this.expectedPage > 1) {
+				const expectedPageElement = this.getPage(this.expectedPage);
+
+				if (expectedPageElement && this.isWpFormsPageVisible(expectedPageElement)) {
+					return expectedPageElement;
+				}
+			}
+
+			return this.getHighestVisiblePage();
+		},
+
+		getHighestVisiblePage() {
 			const pageFour = this.getPage(4);
 			const pageThree = this.getPage(3);
 			const pageTwo = this.getPage(2);
