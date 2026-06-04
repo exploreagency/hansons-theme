@@ -24,6 +24,9 @@ define( 'THEME_INC_URI', THEME_URI . '/inc' );
 define( 'THEME_CORE_PATH', THEME_INC_PATH . '/core' );
 define( 'THEME_CORE_URI', THEME_INC_URI . '/core' );
 
+define( 'THEME_INTEGRATIONS_PATH', THEME_INC_PATH . '/integrations' );
+define( 'THEME_INTEGRATIONS_URI', THEME_INC_URI . '/integrations' );
+
 define( 'THEME_SRC_PATH', THEME_PATH . '/src' );
 define( 'THEME_SRC_URI', THEME_URI . '/src' );
 
@@ -53,6 +56,8 @@ require_once THEME_CORE_PATH . '/core-enqueue-scripts-styles.php';
 require_once THEME_CORE_PATH . '/core-gutenberg.php';
 require_once THEME_CORE_PATH . '/core-add-image-size.php';
 // require_once THEME_CORE_PATH . '/core-tiny-mce.php';
+
+require_once THEME_INTEGRATIONS_PATH . '/hansons-cloudhub.php';
 
 /**
  * Setup/include additional files for theme
