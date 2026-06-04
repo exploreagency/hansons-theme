@@ -23,6 +23,7 @@ export default function schedulerFormModal() {
 		prepareModalPanels() {
 			this.movePageTwoControlsIntoPanel();
 			this.wrapPageThreeContentInPanel();
+			this.addModalCloseButtons();
 		},
 
 		movePageTwoControlsIntoPanel() {
@@ -103,6 +104,83 @@ export default function schedulerFormModal() {
 			contactPanel.appendChild(submitContainer);
 		},
 
+		addModalCloseButtons() {
+			const panels = [
+				this.getPage(2)?.querySelector('.scheduler-modal-panel'),
+				this.getPage(3)?.querySelector('.scheduler-contact-panel'),
+			].filter(Boolean);
+
+			panels.forEach((panel) => {
+				if (panel.querySelector('.scheduler-modal-close')) {
+					return;
+				}
+
+				const closeButton = document.createElement('button');
+
+				closeButton.type = 'button';
+				closeButton.className = 'scheduler-modal-close';
+				closeButton.setAttribute('aria-label', 'Close modal');
+				closeButton.innerHTML = '&times;';
+
+				closeButton.addEventListener('click', () => {
+					this.closeToFirstStep();
+				});
+
+				panel.appendChild(closeButton);
+			});
+		},
+
+		closeToFirstStep() {
+			const activePage = this.getActiveModalPage();
+
+			if (!activePage) {
+				this.closeModalClasses();
+				return;
+			}
+
+			const pageTwo = this.getPage(2);
+			const pageThree = this.getPage(3);
+
+			if (activePage === pageThree) {
+				const pageThreePrevButton = pageThree.querySelector('.wpforms-page-prev');
+
+				if (pageThreePrevButton) {
+					pageThreePrevButton.click();
+
+					window.requestAnimationFrame(() => {
+						const pageTwoPrevButton = pageTwo?.querySelector('.wpforms-page-prev');
+
+						if (pageTwoPrevButton) {
+							pageTwoPrevButton.click();
+						}
+
+						this.syncModalState();
+						this.restoreFocus();
+					});
+
+					return;
+				}
+			}
+
+			if (activePage === pageTwo) {
+				const pageTwoPrevButton = pageTwo.querySelector('.wpforms-page-prev');
+
+				if (pageTwoPrevButton) {
+					pageTwoPrevButton.click();
+
+					window.requestAnimationFrame(() => {
+						this.syncModalState();
+						this.restoreFocus();
+					});
+
+					return;
+				}
+			}
+
+			this.closeModalClasses();
+			this.restoreFocus();
+		},
+
 		observeWpFormsPages() {
 			const pages = [this.getPage(2), this.getPage(3)].filter(Boolean);
 
@@ -137,33 +215,15 @@ export default function schedulerFormModal() {
 					return;
 				}
 
-				const previousButton = activePage.querySelector('.wpforms-page-prev');
-
-				if (previousButton) {
-					previousButton.click();
-					return;
-				}
-
-				this.closeModalClasses();
+				this.closeToFirstStep();
 			});
 		},
 
 		bindPageButtonEvents() {
-			const pageOneNextButton = this.getPage(1)
-				? this.getPage(1).querySelector('.wpforms-page-next')
-				: null;
-
-			const pageTwoNextButton = this.getPage(2)
-				? this.getPage(2).querySelector('.wpforms-page-next')
-				: null;
-
-			const pageTwoPrevButton = this.getPage(2)
-				? this.getPage(2).querySelector('.wpforms-page-prev')
-				: null;
-
-			const pageThreePrevButton = this.getPage(3)
-				? this.getPage(3).querySelector('.wpforms-page-prev')
-				: null;
+			const pageOneNextButton = this.getPage(1)?.querySelector('.wpforms-page-next');
+			const pageTwoNextButton = this.getPage(2)?.querySelector('.wpforms-page-next');
+			const pageTwoPrevButton = this.getPage(2)?.querySelector('.wpforms-page-prev');
+			const pageThreePrevButton = this.getPage(3)?.querySelector('.wpforms-page-prev');
 
 			if (pageOneNextButton) {
 				pageOneNextButton.addEventListener('click', () => {
