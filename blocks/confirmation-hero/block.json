@@ -1,0 +1,29 @@
+{
+  "name": "acf/confirmation-hero",
+  "title": "ACF Block - Confirmation Hero",
+  "description": "",
+  "category": "custom-blocks",
+  "icon": "screenoptions",
+  "example": {
+    "attributes": {
+      "mode": "preview",
+      "data": {
+        "preview": true
+      }
+    }
+  },
+  "supports": {
+    "customClassName": true,
+    "anchor": true
+  },
+  "acf": {
+    "mode": "edit",
+    "renderTemplate": "block-render.php"
+  },
+  "style": [
+    "file:../../dist/css/blocks/confirmation-hero.min.css"
+  ],
+  "script": [
+    "file:../../dist/js/blocks/confirmation-hero.min.js"
+  ]
+}

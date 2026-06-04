@@ -22,7 +22,9 @@ export default function schedulerFormModal() {
 
 		prepareModalPanels() {
 			this.movePageTwoControlsIntoPanel();
-			this.wrapPageThreeContentInPanel();
+			this.wrapPageInPanel(3, 'scheduler-contact-panel');
+			this.wrapPageInPanel(4, 'scheduler-confirmation-panel');
+			this.moveSubmitContainerIntoConfirmationPanel();
 			this.addModalCloseButtons();
 		},
 
@@ -51,24 +53,24 @@ export default function schedulerFormModal() {
 			modalPanel.appendChild(pageBreakControls);
 		},
 
-		wrapPageThreeContentInPanel() {
-			const pageThree = this.getPage(3);
+		wrapPageInPanel(pageNumber, panelClass) {
+			const page = this.getPage(pageNumber);
 
-			if (!pageThree) {
+			if (!page) {
 				return;
 			}
 
-			let contactPanel = pageThree.querySelector(':scope > .scheduler-contact-panel');
+			let panel = page.querySelector(`:scope > .${panelClass}`);
 
-			if (!contactPanel) {
-				contactPanel = document.createElement('div');
-				contactPanel.className = 'scheduler-contact-panel';
-				pageThree.appendChild(contactPanel);
+			if (!panel) {
+				panel = document.createElement('div');
+				panel.className = panelClass;
+				page.appendChild(panel);
 			}
 
-			const pageThreeChildren = Array.from(pageThree.children).filter((child) => {
+			const childrenToMove = Array.from(page.children).filter((child) => {
 				return (
-					child !== contactPanel &&
+					child !== panel &&
 					(
 						child.classList.contains('wpforms-field') ||
 						child.classList.contains('wpforms-pagebreak-left') ||
@@ -78,36 +80,38 @@ export default function schedulerFormModal() {
 				);
 			});
 
-			pageThreeChildren.forEach((child) => {
-				contactPanel.appendChild(child);
+			childrenToMove.forEach((child) => {
+				panel.appendChild(child);
 			});
-
-			this.moveSubmitContainerIntoContactPanel(contactPanel);
 		},
 
-		moveSubmitContainerIntoContactPanel(contactPanel) {
-			if (!contactPanel) {
+		moveSubmitContainerIntoConfirmationPanel() {
+			const pageFour = this.getPage(4);
+
+			if (!pageFour) {
 				return;
 			}
 
+			const confirmationPanel = pageFour.querySelector('.scheduler-confirmation-panel');
 			const submitContainer = this.form.querySelector('.wpforms-submit-container');
 
-			if (!submitContainer) {
+			if (!confirmationPanel || !submitContainer) {
 				return;
 			}
 
-			if (contactPanel.contains(submitContainer)) {
+			if (confirmationPanel.contains(submitContainer)) {
 				return;
 			}
 
-			submitContainer.classList.add('scheduler-contact-panel__submit');
-			contactPanel.appendChild(submitContainer);
+			submitContainer.classList.add('scheduler-confirmation-panel__submit');
+			confirmationPanel.appendChild(submitContainer);
 		},
 
 		addModalCloseButtons() {
 			const panels = [
 				this.getPage(2)?.querySelector('.scheduler-modal-panel'),
 				this.getPage(3)?.querySelector('.scheduler-contact-panel'),
+				this.getPage(4)?.querySelector('.scheduler-confirmation-panel'),
 			].filter(Boolean);
 
 			panels.forEach((panel) => {
@@ -137,6 +141,7 @@ export default function schedulerFormModal() {
 			this.forceShowPage(1);
 			this.forceHidePage(2);
 			this.forceHidePage(3);
+			this.forceHidePage(4);
 
 			this.closeModalClasses();
 			this.restoreFocus();
@@ -171,7 +176,7 @@ export default function schedulerFormModal() {
 		},
 
 		observeWpFormsPages() {
-			const pages = [this.getPage(2), this.getPage(3)].filter(Boolean);
+			const pages = [this.getPage(2), this.getPage(3), this.getPage(4)].filter(Boolean);
 
 			if (!pages.length) {
 				return;
@@ -209,8 +214,11 @@ export default function schedulerFormModal() {
 		bindPageButtonEvents() {
 			const pageOneNextButton = this.getPage(1)?.querySelector('.wpforms-page-next');
 			const pageTwoNextButton = this.getPage(2)?.querySelector('.wpforms-page-next');
+			const pageThreeNextButton = this.getPage(3)?.querySelector('.wpforms-page-next');
+
 			const pageTwoPrevButton = this.getPage(2)?.querySelector('.wpforms-page-prev');
 			const pageThreePrevButton = this.getPage(3)?.querySelector('.wpforms-page-prev');
+			const pageFourPrevButton = this.getPage(4)?.querySelector('.wpforms-page-prev');
 
 			if (pageOneNextButton) {
 				pageOneNextButton.addEventListener('click', () => {
@@ -224,15 +232,19 @@ export default function schedulerFormModal() {
 				});
 			}
 
-			if (pageTwoNextButton) {
-				pageTwoNextButton.addEventListener('click', () => {
+			[pageTwoNextButton, pageThreeNextButton, pageThreePrevButton, pageFourPrevButton].forEach((button) => {
+				if (!button) {
+					return;
+				}
+
+				button.addEventListener('click', () => {
 					window.requestAnimationFrame(() => {
 						this.prepareModalPanels();
 						this.syncModalState();
 						this.focusActiveModal();
 					});
 				});
-			}
+			});
 
 			if (pageTwoPrevButton) {
 				pageTwoPrevButton.addEventListener('click', () => {
@@ -241,53 +253,55 @@ export default function schedulerFormModal() {
 					});
 				});
 			}
-
-			if (pageThreePrevButton) {
-				pageThreePrevButton.addEventListener('click', () => {
-					window.requestAnimationFrame(() => {
-						this.syncModalState();
-						this.focusActiveModal();
-					});
-				});
-			}
 		},
 
 		syncModalState() {
 			const pageTwo = this.getPage(2);
 			const pageThree = this.getPage(3);
+			const pageFour = this.getPage(4);
 
 			const pageTwoVisible = this.isWpFormsPageVisible(pageTwo);
 			const pageThreeVisible = this.isWpFormsPageVisible(pageThree);
+			const pageFourVisible = this.isWpFormsPageVisible(pageFour);
 
 			if (pageTwo) {
 				pageTwo.classList.toggle(
 					'is-scheduler-modal-open',
-					pageTwoVisible && !pageThreeVisible
+					pageTwoVisible && !pageThreeVisible && !pageFourVisible
 				);
 			}
 
 			if (pageThree) {
-				pageThree.classList.toggle('is-scheduler-modal-open', pageThreeVisible);
+				pageThree.classList.toggle(
+					'is-scheduler-modal-open',
+					pageThreeVisible && !pageFourVisible
+				);
+			}
+
+			if (pageFour) {
+				pageFour.classList.toggle('is-scheduler-modal-open', pageFourVisible);
 			}
 
 			document.body.classList.toggle(
 				'scheduler-modal-is-open',
-				pageTwoVisible || pageThreeVisible
+				pageTwoVisible || pageThreeVisible || pageFourVisible
 			);
 		},
 
 		closeModalClasses() {
-			const pageTwo = this.getPage(2);
-			const pageThree = this.getPage(3);
+			[2, 3, 4].forEach((pageNumber) => {
+				const page = this.getPage(pageNumber);
 
-			if (pageTwo) {
-				pageTwo.classList.remove('is-scheduler-modal-open');
-				pageTwo.classList.remove('is-out-of-service-area');
-			}
+				if (!page) {
+					return;
+				}
 
-			if (pageThree) {
-				pageThree.classList.remove('is-scheduler-modal-open');
-			}
+				page.classList.remove('is-scheduler-modal-open');
+
+				if (pageNumber === 2) {
+					page.classList.remove('is-out-of-service-area');
+				}
+			});
 
 			document.body.classList.remove('scheduler-modal-is-open');
 		},
@@ -317,8 +331,13 @@ export default function schedulerFormModal() {
 		},
 
 		getActiveModalPage() {
+			const pageFour = this.getPage(4);
 			const pageThree = this.getPage(3);
 			const pageTwo = this.getPage(2);
+
+			if (this.isWpFormsPageVisible(pageFour)) {
+				return pageFour;
+			}
 
 			if (this.isWpFormsPageVisible(pageThree)) {
 				return pageThree;
