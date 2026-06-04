@@ -122,7 +122,10 @@ export default function schedulerFormModal() {
 				closeButton.setAttribute('aria-label', 'Close modal');
 				closeButton.innerHTML = '&times;';
 
-				closeButton.addEventListener('click', () => {
+				closeButton.addEventListener('click', (event) => {
+					event.preventDefault();
+					event.stopPropagation();
+
 					this.closeToFirstStep();
 				});
 
@@ -131,54 +134,40 @@ export default function schedulerFormModal() {
 		},
 
 		closeToFirstStep() {
-			const activePage = this.getActiveModalPage();
-
-			if (!activePage) {
-				this.closeModalClasses();
-				return;
-			}
-
-			const pageTwo = this.getPage(2);
-			const pageThree = this.getPage(3);
-
-			if (activePage === pageThree) {
-				const pageThreePrevButton = pageThree.querySelector('.wpforms-page-prev');
-
-				if (pageThreePrevButton) {
-					pageThreePrevButton.click();
-
-					window.requestAnimationFrame(() => {
-						const pageTwoPrevButton = pageTwo?.querySelector('.wpforms-page-prev');
-
-						if (pageTwoPrevButton) {
-							pageTwoPrevButton.click();
-						}
-
-						this.syncModalState();
-						this.restoreFocus();
-					});
-
-					return;
-				}
-			}
-
-			if (activePage === pageTwo) {
-				const pageTwoPrevButton = pageTwo.querySelector('.wpforms-page-prev');
-
-				if (pageTwoPrevButton) {
-					pageTwoPrevButton.click();
-
-					window.requestAnimationFrame(() => {
-						this.syncModalState();
-						this.restoreFocus();
-					});
-
-					return;
-				}
-			}
+			this.forceShowPage(1);
+			this.forceHidePage(2);
+			this.forceHidePage(3);
 
 			this.closeModalClasses();
 			this.restoreFocus();
+		},
+
+		forceShowPage(pageNumber) {
+			const page = this.getPage(pageNumber);
+
+			if (!page) {
+				return;
+			}
+
+			page.style.display = 'block';
+			page.hidden = false;
+			page.classList.remove('is-scheduler-modal-open');
+		},
+
+		forceHidePage(pageNumber) {
+			const page = this.getPage(pageNumber);
+
+			if (!page) {
+				return;
+			}
+
+			page.style.display = 'none';
+			page.hidden = false;
+			page.classList.remove('is-scheduler-modal-open');
+
+			if (pageNumber === 2) {
+				page.classList.remove('is-out-of-service-area');
+			}
 		},
 
 		observeWpFormsPages() {
@@ -209,9 +198,7 @@ export default function schedulerFormModal() {
 					return;
 				}
 
-				const activePage = this.getActiveModalPage();
-
-				if (!activePage) {
+				if (!this.getActiveModalPage()) {
 					return;
 				}
 
@@ -250,8 +237,7 @@ export default function schedulerFormModal() {
 			if (pageTwoPrevButton) {
 				pageTwoPrevButton.addEventListener('click', () => {
 					window.requestAnimationFrame(() => {
-						this.syncModalState();
-						this.restoreFocus();
+						this.closeToFirstStep();
 					});
 				});
 			}
@@ -296,6 +282,7 @@ export default function schedulerFormModal() {
 
 			if (pageTwo) {
 				pageTwo.classList.remove('is-scheduler-modal-open');
+				pageTwo.classList.remove('is-out-of-service-area');
 			}
 
 			if (pageThree) {
