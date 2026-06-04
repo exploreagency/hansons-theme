@@ -39,6 +39,7 @@ $image            = get_field( 'image' );
 
     <?php if ( $form_shortcode ) : ?>
       <div class="page-hero__content__form"
+           x-data="schedulerFormModal"
         >
         <?= do_shortcode( $form_shortcode ); ?>
       </div>  
