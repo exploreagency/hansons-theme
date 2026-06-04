@@ -33,6 +33,7 @@ export default function schedulerFormModal() {
 			}
 
 			const modalPanel = pageTwo.querySelector('.scheduler-modal-panel');
+
 			const pageBreakControls = pageTwo.querySelector(
 				'.wpforms-pagebreak-left, .wpforms-pagebreak-center, .wpforms-pagebreak-right'
 			);
@@ -56,29 +57,50 @@ export default function schedulerFormModal() {
 				return;
 			}
 
-			if (pageThree.querySelector(':scope > .scheduler-contact-panel')) {
-				return;
+			let contactPanel = pageThree.querySelector(':scope > .scheduler-contact-panel');
+
+			if (!contactPanel) {
+				contactPanel = document.createElement('div');
+				contactPanel.className = 'scheduler-contact-panel';
+				pageThree.appendChild(contactPanel);
 			}
 
-			const contactPanel = document.createElement('div');
-
-			contactPanel.className = 'scheduler-contact-panel';
-
-			const childrenToMove = Array.from(pageThree.children).filter((child) => {
+			const pageThreeChildren = Array.from(pageThree.children).filter((child) => {
 				return (
-					child.classList.contains('wpforms-field') ||
-					child.classList.contains('wpforms-pagebreak-left') ||
-					child.classList.contains('wpforms-pagebreak-center') ||
-					child.classList.contains('wpforms-pagebreak-right') ||
-					child.classList.contains('wpforms-submit-container')
+					child !== contactPanel &&
+					(
+						child.classList.contains('wpforms-field') ||
+						child.classList.contains('wpforms-pagebreak-left') ||
+						child.classList.contains('wpforms-pagebreak-center') ||
+						child.classList.contains('wpforms-pagebreak-right')
+					)
 				);
 			});
 
-			childrenToMove.forEach((child) => {
+			pageThreeChildren.forEach((child) => {
 				contactPanel.appendChild(child);
 			});
 
-			pageThree.appendChild(contactPanel);
+			this.moveSubmitContainerIntoContactPanel(contactPanel);
+		},
+
+		moveSubmitContainerIntoContactPanel(contactPanel) {
+			if (!contactPanel) {
+				return;
+			}
+
+			const submitContainer = this.form.querySelector('.wpforms-submit-container');
+
+			if (!submitContainer) {
+				return;
+			}
+
+			if (contactPanel.contains(submitContainer)) {
+				return;
+			}
+
+			submitContainer.classList.add('scheduler-contact-panel__submit');
+			contactPanel.appendChild(submitContainer);
 		},
 
 		observeWpFormsPages() {
@@ -127,10 +149,21 @@ export default function schedulerFormModal() {
 		},
 
 		bindPageButtonEvents() {
-			const pageOneNextButton = this.getPage(1)?.querySelector('.wpforms-page-next');
-			const pageTwoNextButton = this.getPage(2)?.querySelector('.wpforms-page-next');
-			const pageTwoPrevButton = this.getPage(2)?.querySelector('.wpforms-page-prev');
-			const pageThreePrevButton = this.getPage(3)?.querySelector('.wpforms-page-prev');
+			const pageOneNextButton = this.getPage(1)
+				? this.getPage(1).querySelector('.wpforms-page-next')
+				: null;
+
+			const pageTwoNextButton = this.getPage(2)
+				? this.getPage(2).querySelector('.wpforms-page-next')
+				: null;
+
+			const pageTwoPrevButton = this.getPage(2)
+				? this.getPage(2).querySelector('.wpforms-page-prev')
+				: null;
+
+			const pageThreePrevButton = this.getPage(3)
+				? this.getPage(3).querySelector('.wpforms-page-prev')
+				: null;
 
 			if (pageOneNextButton) {
 				pageOneNextButton.addEventListener('click', () => {
