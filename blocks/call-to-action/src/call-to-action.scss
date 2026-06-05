@@ -117,7 +117,7 @@
         width: 100%;
 
         @include mixins.laptop {
-          align-items: flex-start;
+          justify-content: flex-start;
         }
       }
     }
