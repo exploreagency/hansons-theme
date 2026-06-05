@@ -43,7 +43,7 @@ $testimonials_list = get_field( 'testimonials_list' );
                   $source = $testimonial['source'];
 
                   $review_plain_text = wp_strip_all_tags( $review );
-                  $should_truncate = strlen( $review_plain_text ) > 180;
+                  $should_truncate = strlen( $review_plain_text ) > 160;
                   ?>
                   <div class="testimonials__carousel__slide">
                     <div class="testimonials__carousel__slide__container">
@@ -68,22 +68,35 @@ $testimonials_list = get_field( 'testimonials_list' );
                           </span>
 
                           <div class="testimonials__carousel__slide__review__wrapper"
-                               x-data="{ expanded: false }"
+                               x-data="expanded: false,
+                                collapsedHeight: 86,
+                                getHeight() {
+                                  return this.expanded
+                                    ? this.$refs.reviewInner.scrollHeight + 'px'
+                                    : this.collapsedHeight + 'px';
+                                },
+                                refreshEmbla() {
+                                  this.$nextTick(() => {
+                                    window.dispatchEvent(new Event('resize'));
+                                  });
+                                }
+                              }"
                             >
-                            <p class="testimonials__carousel__slide__review"
-                               x-ref="review"
-                               :class="{ 'is-clamped': !expanded }"
+                            <div class="testimonials__carousel__slide__review"
+                                 x-ref="reviewInner"
+                                 :class="{ 'is-expanded': expanded }"
+		                             :style="{ maxHeight: getHeight() }"
                               >
                               <?= esc_html( $review_plain_text ); ?>
-                            </p>
+                            </div>
 
                             <?php if ( $should_truncate ) : ?>
                               <button type="button"
                                       class="testimonials__carousel__slide__read-more"
-                                      @click="expanded = !expanded; setTimeout(() => window.dispatchEvent(new Event('resize')), 250)"
-                                      :aria-expanded="expanded.toString()"
+                                      @click="expanded = !expanded; refreshEmbla();"
+			                                :aria-expanded="expanded.toString()"
                                 >
-                                <span x-text="expanded ? 'Read less' : 'Read more'">Read more</span>
+                                <span x-text="expanded ? 'Read less' : 'Read more'"></span>
                               </button>
                             <?php endif; ?>
                           </div>
