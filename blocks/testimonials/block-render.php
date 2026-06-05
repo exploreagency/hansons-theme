@@ -74,7 +74,7 @@ $testimonials_list = get_field( 'testimonials_list' );
                                x-ref="review"
                                :class="{ 'is-clamped': !expanded }"
                               >
-                              <?= wp_kses_post( $review ); ?>
+                              <?= esc_html( $review_plain_text ); ?>
                             </p>
 
                             <?php if ( $should_truncate ) : ?>
