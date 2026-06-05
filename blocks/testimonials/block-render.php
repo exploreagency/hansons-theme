@@ -43,7 +43,7 @@ $testimonials_list = get_field( 'testimonials_list' );
                   $source = $testimonial['source'];
 
                   $review_plain_text = wp_strip_all_tags( $review );
-                  $should_truncate = strlen( $review_plain_text ) > 250;
+                  $should_truncate = strlen( $review_plain_text ) > 280;
                   ?>
                   <div class="testimonials__carousel__slide">
                     <div class="testimonials__carousel__slide__container">
