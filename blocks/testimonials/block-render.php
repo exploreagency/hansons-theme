@@ -68,7 +68,8 @@ $testimonials_list = get_field( 'testimonials_list' );
                           </span>
 
                           <div class="testimonials__carousel__slide__review__wrapper"
-                               x-data="expanded: false,
+                               x-data="{
+                                expanded: false,
                                 collapsedHeight: 86,
                                 getHeight() {
                                   return this.expanded
