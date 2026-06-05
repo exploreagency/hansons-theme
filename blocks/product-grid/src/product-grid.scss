@@ -134,7 +134,7 @@
         justify-content: flex-start;
         align-items: center;
         width: 100%;
-        
+
         @include mixins.laptop {
           height: 3.75rem;
         }
@@ -158,13 +158,13 @@
       &__wrapper {
         display: flex;
         flex-direction: column;
-        justify-content: flex-start;
+        justify-content: center;
         align-items: center;
         width: 100%;
         border-bottom: 1px solid variables.$secondary;
 
         @include mixins.laptop {
-          height: 3.125rem;
+          height: 3.25rem;
         }
       }
     }
