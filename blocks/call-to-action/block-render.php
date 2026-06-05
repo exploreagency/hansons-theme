@@ -31,12 +31,14 @@ $image       = get_field( 'image' );
               $url = $cta['url'];
               $label = $cta['title'];
               ?>
-              <a href="<?= esc_url( $url ); ?>"
-                aria-label="<?= esc_html( $label ); ?>"
-                class="call-to-action__content__cta"
-                >
-                <?= esc_html( $label ); ?>
-              </a>
+              <div class="call-to-action__content__cta__wrapper">
+                <a href="<?= esc_url( $url ); ?>"
+                   aria-label="<?= esc_html( $label ); ?>"
+                   class="call-to-action__content__cta"
+                  >
+                  <?= esc_html( $label ); ?>
+                </a>
+              </div>
             <?php endif; ?>
           </div>
 

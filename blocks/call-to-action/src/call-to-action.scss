@@ -108,6 +108,17 @@
         border: 1px solid variables.$accent;
         background: variables.$accent;
       }
+
+      &__wrapper {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+
+        @include mixins.laptop {
+          align-items: flex-start;
+        }
+      }
     }
   }
 

@@ -5,5 +5,84 @@
 @use '../../../src/scss/abstracts/mixins';
 
 .confirmation-hero {
-  
+  width: 100%;
+  background: variables.$primary;
+
+  &__content {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    gap: 1rem;
+    max-width: 32rem;
+    width: 100%;
+    color: variables.$white;
+
+    @include mixins.laptop {
+      gap: 1.5rem;
+    }
+
+    h2 {
+      font-size: clamp( variables.$font-md, 5vw, variables.$font-2xl );
+      color: variables.$white;
+      font-weight: 700;
+    }
+
+    h3 {
+      font-size: clamp( variables.$font-md, 5vw, variables.$font-xl );
+      color: variables.$white;
+      font-weight: 700;
+    }
+
+    p {
+      font-size: clamp( variables.$font-base, 1vw, variables.$font-md );
+      color: variables.$white;
+      font-weight: 400;
+    }
+
+    ul {
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      align-items: flex-start;
+      gap: 0.5rem;
+    }
+
+    li {
+      font-size: clamp( variables.$font-base, 1vw, variables.$font-md );
+      color: variables.$white;
+      font-weight: 400;
+    }
+  }
+
+  &__scheduler-button {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    height: 2.75rem;
+    background: variables.$secondary;
+    border: 1px solid variables.$secondary;
+    border-radius: variables.$rounded-lg;
+    padding: 0 1rem;
+    font-size: variables.$font-sm;
+    font-weight: 700;
+    color: variables.$primary;
+    text-transform: uppercase;
+    text-decoration: none;
+    transition: all 0.15s ease-in-out;
+
+    @include mixins.tablet {
+      font-size: variables.$font-base;
+    }
+
+    @include mixins.laptop {
+      font-size: variables.$font-semi-md;
+    }
+
+    &:hover {
+      border: 1px solid variables.$accent;
+      background: variables.$accent;
+    }
+  }
 }
