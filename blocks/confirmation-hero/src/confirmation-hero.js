@@ -1,108 +1,114 @@
-document.addEventListener('DOMContentLoaded', function () {
-	const thankYouBlock = document.querySelector('.js-scheduler-thank-you');
-
-	if (!thankYouBlock) {
-		return;
-	}
-
+(function () {
 	const APPOINTMENT_DURATION_MINUTES = 90;
-	const APPOINTMENT_TIMEZONE = 'America/Detroit';
+	const MAX_ATTEMPTS = 50;
+	const INTERVAL_MS = 100;
 
-	const params = new URLSearchParams(window.location.search);
+	let attempts = 0;
 
-	const firstName = params.get('first_name') || '';
-	const appointmentDate = params.get('appointment_date') || '';
-	const appointmentTime = params.get('appointment_time') || '';
+	function initSchedulerThankYou() {
+		attempts++;
 
-	const firstNameEl = thankYouBlock.querySelector('.js-thank-you-first-name');
-	const dateEl = thankYouBlock.querySelector('.js-thank-you-date');
-	const timeEl = thankYouBlock.querySelector('.js-thank-you-time');
+		const thankYouBlock = document.querySelector('.js-scheduler-thank-you');
 
-	const addToCalendarButton = thankYouBlock.querySelector('.js-add-to-calendar');
-	const addToGoogleCalendarButton = thankYouBlock.querySelector(
-		'.js-add-to-google-calendar'
-	);
+		if (!thankYouBlock) {
+			if (attempts < MAX_ATTEMPTS) {
+				setTimeout(initSchedulerThankYou, INTERVAL_MS);
+			}
 
-	if (firstNameEl) {
-		firstNameEl.textContent = firstName;
-	}
-
-	if (dateEl) {
-		dateEl.textContent = appointmentDate;
-	}
-
-	if (timeEl) {
-		timeEl.textContent = appointmentTime;
-	}
-
-	if (!appointmentDate || !appointmentTime) {
-		if (addToCalendarButton) {
-			addToCalendarButton.hidden = true;
+			return;
 		}
 
-		if (addToGoogleCalendarButton) {
-			addToGoogleCalendarButton.hidden = true;
+		const params = new URLSearchParams(window.location.search);
+
+		const firstName = params.get('first_name') || '';
+		const appointmentDate = params.get('appointment_date') || '';
+		const appointmentTime = params.get('appointment_time') || '';
+
+		const firstNameEl = thankYouBlock.querySelector('.js-thank-you-first-name');
+		const dateEl = thankYouBlock.querySelector('.js-thank-you-date');
+		const timeEl = thankYouBlock.querySelector('.js-thank-you-time');
+
+		const addToCalendarButton = thankYouBlock.querySelector('.js-add-to-calendar');
+		const addToGoogleCalendarButton = thankYouBlock.querySelector(
+			'.js-add-to-google-calendar'
+		);
+
+		if (firstNameEl) {
+			firstNameEl.textContent = firstName;
 		}
 
-		return;
-	}
-
-	const appointmentStart = parseAppointmentDateTime(
-		appointmentDate,
-		appointmentTime
-	);
-
-	if (!appointmentStart) {
-		if (addToCalendarButton) {
-			addToCalendarButton.hidden = true;
+		if (dateEl) {
+			dateEl.textContent = appointmentDate;
 		}
 
-		if (addToGoogleCalendarButton) {
-			addToGoogleCalendarButton.hidden = true;
+		if (timeEl) {
+			timeEl.textContent = appointmentTime;
 		}
 
-		return;
-	}
+		if (!appointmentDate || !appointmentTime) {
+			hideCalendarButtons(addToCalendarButton, addToGoogleCalendarButton);
+			return;
+		}
 
-	const appointmentEnd = new Date(
-		appointmentStart.getTime() + APPOINTMENT_DURATION_MINUTES * 60 * 1000
-	);
+		const appointmentStart = parseAppointmentDateTime(
+			appointmentDate,
+			appointmentTime
+		);
 
-	const eventTitle = 'Hansons Free Estimate Appointment';
-	const eventDescription =
-		'Your Hansons free estimate appointment is scheduled. Please set aside 60-90 minutes for the appointment.';
-	const eventLocation = '';
+		if (!appointmentStart) {
+			hideCalendarButtons(addToCalendarButton, addToGoogleCalendarButton);
+			return;
+		}
 
-	const googleCalendarUrl = buildGoogleCalendarUrl({
-		title: eventTitle,
-		description: eventDescription,
-		location: eventLocation,
-		startDate: appointmentStart,
-		endDate: appointmentEnd,
-		timezone: APPOINTMENT_TIMEZONE,
-	});
+		const appointmentEnd = new Date(
+			appointmentStart.getTime() + APPOINTMENT_DURATION_MINUTES * 60 * 1000
+		);
 
-	const icsFile = buildIcsFile({
-		title: eventTitle,
-		description: eventDescription,
-		location: eventLocation,
-		startDate: appointmentStart,
-		endDate: appointmentEnd,
-	});
+		const eventTitle = 'Hansons Free Estimate Appointment';
+		const eventDescription =
+			'Your Hansons free estimate appointment is scheduled. Please set aside 60-90 minutes for the appointment.';
+		const eventLocation = '';
 
-	if (addToGoogleCalendarButton) {
-		addToGoogleCalendarButton.href = googleCalendarUrl;
-	}
-
-	if (addToCalendarButton) {
-		const blob = new Blob([icsFile], {
-			type: 'text/calendar;charset=utf-8',
+		const googleCalendarUrl = buildGoogleCalendarUrl({
+			title: eventTitle,
+			description: eventDescription,
+			location: eventLocation,
+			startDate: appointmentStart,
+			endDate: appointmentEnd,
 		});
 
-		const icsUrl = URL.createObjectURL(blob);
+		const icsFile = buildIcsFile({
+			title: eventTitle,
+			description: eventDescription,
+			location: eventLocation,
+			startDate: appointmentStart,
+			endDate: appointmentEnd,
+		});
 
-		addToCalendarButton.href = icsUrl;
-		addToCalendarButton.download = 'hansons-appointment.ics';
+		if (addToGoogleCalendarButton) {
+			addToGoogleCalendarButton.href = googleCalendarUrl;
+		}
+
+		if (addToCalendarButton) {
+			const blob = new Blob([icsFile], {
+				type: 'text/calendar;charset=utf-8',
+			});
+
+			const icsUrl = URL.createObjectURL(blob);
+
+			addToCalendarButton.href = icsUrl;
+			addToCalendarButton.download = 'hansons-appointment.ics';
+		}
+	}
+
+	function hideCalendarButtons(addToCalendarButton, addToGoogleCalendarButton) {
+		if (addToCalendarButton) {
+			addToCalendarButton.hidden = true;
+		}
+
+		if (addToGoogleCalendarButton) {
+			addToGoogleCalendarButton.hidden = true;
+		}
 	}
 
 	function parseAppointmentDateTime(dateString, timeString) {
@@ -143,7 +149,6 @@ document.addEventListener('DOMContentLoaded', function () {
 		location,
 		startDate,
 		endDate,
-		timezone,
 	}) {
 		const baseUrl = 'https://calendar.google.com/calendar/render';
 
@@ -153,7 +158,6 @@ document.addEventListener('DOMContentLoaded', function () {
 			details: description,
 			location: location,
 			dates: `${formatGoogleDate(startDate)}/${formatGoogleDate(endDate)}`,
-			ctz: timezone,
 		});
 
 		return `${baseUrl}?${params.toString()}`;
@@ -218,4 +222,10 @@ document.addEventListener('DOMContentLoaded', function () {
 			.replace(/,/g, '\\,')
 			.replace(/\n/g, '\\n');
 	}
-});
+
+	if (document.readyState === 'loading') {
+		document.addEventListener('DOMContentLoaded', initSchedulerThankYou);
+	} else {
+		initSchedulerThankYou();
+	}
+})();
