@@ -3,9 +3,9 @@
  * Product Grid Block
  */
 
-$heading          = get_field( 'heading' );
-$description      = get_field( 'description' );
-$products_list    = get_field( 'products_list' );
+$heading       = get_field( 'heading' );
+$description   = get_field( 'description' );
+$products_list = get_field( 'products_list' );
 ?>
 
 <section <?php echo vt_block_attributes( 'product-grid', $block ); ?>>
@@ -56,16 +56,20 @@ $products_list    = get_field( 'products_list' );
                       loading="lazy"
                       class="product-grid__product__image"
                     />
-                  <h4 class="product-grid__product__subheading">
-                    <?= wp_kses_post( $subheading ); ?>
-                  </h4>
+                  <div class="product-grid__product__subheading__wrapper">
+                    <h4 class="product-grid__product__subheading">
+                      <?= wp_kses_post( $subheading ); ?>
+                    </h4>
+                  </div>
                   <div class="product-grid__product__feature-list">
                     <?php foreach ( $feature_list as $feature ) :
                       $item = $feature['feature'];
                       ?>
-                      <p class="product-grid__product__feature">
-                        <?= wp_kses_post( $item ); ?>
-                      </p>
+                      <div class="product-grid__product__feature__wrapper">
+                        <p class="product-grid__product__feature">
+                          <?= wp_kses_post( $item ); ?>
+                        </p>
+                      </div>
                     <?php endforeach; ?>
                   </div>
                 </div>

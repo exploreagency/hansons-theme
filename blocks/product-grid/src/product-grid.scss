@@ -127,6 +127,18 @@
       font-weight: 700;
       color: variables.$primary;
       text-align: center;
+
+      &__wrapper {
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: center;
+        width: 100%;
+        
+        @include mixins.laptop {
+          height: 3.75rem;
+        }
+      }
     }
 
     &__feature-list {
@@ -138,13 +150,23 @@
     }
 
     &__feature {
-      width: 100%;
       font-size: clamp( variables.$font-base, 1vw, variables.$font-md );
       font-weight: 400;
       color: variables.$black;
       text-align: center;
-      padding: 1rem 0;
-      border-bottom: 1px solid variables.$secondary;
+
+      &__wrapper {
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: center;
+        width: 100%;
+        border-bottom: 1px solid variables.$secondary;
+
+        @include mixins.laptop {
+          height: 3.125rem;
+        }
+      }
     }
 
     &__toggle {
