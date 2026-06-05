@@ -6,6 +6,9 @@
 $heading           = get_field( 'heading' );
 $rating            = get_field( 'rating' );
 $testimonials_list = get_field( 'testimonials_list' );
+
+$review_plain_text = wp_strip_all_tags( $review );
+$should_truncate = strlen( $review_plain_text ) > 180;
 ?>
 
 <section <?php echo vt_block_attributes( 'testimonials', $block ); ?>>
@@ -65,22 +68,7 @@ $testimonials_list = get_field( 'testimonials_list' );
                           </span>
 
                           <div class="testimonials__carousel__slide__review__wrapper"
-                               x-data="{
-                                expanded: false,
-                                canExpand: false,
-                                init() {
-                                  this.$nextTick(() => {
-                                    this.canExpand = this.$refs.review.scrollHeight > this.$refs.review.clientHeight;
-                                  });
-                                },
-                                toggle() {
-                                  this.expanded = !this.expanded;
-
-                                  this.$nextTick(() => {
-                                    window.dispatchEvent(new Event('resize'));
-                                  });
-                                }
-                              }"
+                               x-data="{ expanded: false }"
                             >
                             <p class="testimonials__carousel__slide__review"
                                x-ref="review"
@@ -88,17 +76,17 @@ $testimonials_list = get_field( 'testimonials_list' );
                               >
                               <?= wp_kses_post( $review ); ?>
                             </p>
-                          </div>
 
-                          <button type="button"
-                                  class="testimonials__carousel__slide__read-more"
-                                  x-show="canExpand"
-                                  x-cloak
-                                  @click="toggle()"
-                                  :aria-expanded="expanded.toString()"
-                            >
-                            <span x-text="expanded ? 'Read less' : 'Read more'"></span>
-                          </button>
+                            <?php if ( $should_truncate ) : ?>
+                              <button type="button"
+                                      class="testimonials__carousel__slide__read-more"
+                                      @click="expanded = !expanded; setTimeout(() => window.dispatchEvent(new Event('resize')), 250)"
+                                      :aria-expanded="expanded.toString()"
+                                >
+                                <span x-text="expanded ? 'Read less' : 'Read more'">Read more</span>
+                              </button>
+                            <?php endif; ?>
+                          </div>
 
                           <img src="<?= esc_url( wp_get_attachment_image_src( $source, 'testimonial-source' )[0] ); ?>"
                                alt="<?= esc_attr( get_post_meta( $source, '_wp_attachment_image_alt', TRUE ) ); ?>"
