@@ -662,10 +662,6 @@
 				line-height: $line-height;
 				white-space: nowrap;
 				cursor: pointer;
-
-				@include tablet {
-					font-size: $font-semi-md;
-				}
 			}
 
 			input[type='checkbox'] {
