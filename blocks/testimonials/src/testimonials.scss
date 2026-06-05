@@ -102,6 +102,13 @@
         &__wrapper {
           width: 100%;
         }
+
+        &.is-clamped {
+          display: -webkit-box;
+          -webkit-line-clamp: 6;
+          -webkit-box-orient: vertical;
+          overflow: hidden;
+        }
       }
 
       &__read-more {
