@@ -6,9 +6,6 @@
 $heading           = get_field( 'heading' );
 $rating            = get_field( 'rating' );
 $testimonials_list = get_field( 'testimonials_list' );
-
-$review_plain_text = wp_strip_all_tags( $review );
-$should_truncate = strlen( $review_plain_text ) > 180;
 ?>
 
 <section <?php echo vt_block_attributes( 'testimonials', $block ); ?>>
@@ -44,6 +41,9 @@ $should_truncate = strlen( $review_plain_text ) > 180;
                   $posted_date = $testimonial['posted_date'];
                   $review = $testimonial['review'];
                   $source = $testimonial['source'];
+
+                  $review_plain_text = wp_strip_all_tags( $review );
+                  $should_truncate = strlen( $review_plain_text ) > 180;
                   ?>
                   <div class="testimonials__carousel__slide">
                     <div class="testimonials__carousel__slide__container">
