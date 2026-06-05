@@ -533,6 +533,9 @@
 		> .wpforms-pagebreak-right,
 		> .wpforms-submit-container,
 		> .scheduler-confirmation-panel__submit {
+      display: flex;
+      justify-content: center;
+      align-items: center;
 			margin-top: 1.5rem;
 			padding: 0;
 			text-align: center;
@@ -544,36 +547,36 @@
       display: flex;
       justify-content: center;
       align-items: center;
+    }
 
-      .wpforms-page-next {
-        display: flex;
-        flex-direction: row;
-        justify-content: center;
-        align-items: center;
-        height: 2.75rem;
-        background: $secondary !important;
-        border: 1px solid $secondary;
-        border-radius: $rounded-lg;
-        padding: 0 1rem;
-        font-size: $font-sm;
-        font-weight: 700;
-        color: $primary !important;
-        text-transform: uppercase;
-        text-decoration: none;
-        transition: all 0.15s ease-in-out;
+    .wpforms-page-next {
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+      align-items: center;
+      height: 2.75rem;
+      background: $secondary !important;
+      border: 1px solid $secondary;
+      border-radius: $rounded-lg;
+      padding: 0 1rem;
+      font-size: $font-sm;
+      font-weight: 700;
+      color: $primary !important;
+      text-transform: uppercase;
+      text-decoration: none;
+      transition: all 0.15s ease-in-out;
 
-        @include tablet {
-          font-size: $font-base;
-        }
+      @include tablet {
+        font-size: $font-base;
+      }
 
-        @include laptop {
-          font-size: $font-semi-md;
-        }
+      @include laptop {
+        font-size: $font-semi-md;
+      }
 
-        &:hover {
-          border: 1px solid $accent;
-          background: $accent !important;
-        }
+      &:hover {
+        border: 1px solid $accent;
+        background: $accent !important;
       }
     }
 	}
@@ -766,36 +769,36 @@
       display: flex;
       justify-content: center;
       align-items: center;
+    }
 
-      .wpforms-page-next {
-        display: flex;
-        flex-direction: row;
-        justify-content: center;
-        align-items: center;
-        height: 2.75rem;
-        background: $secondary !important;
-        border: 1px solid $secondary;
-        border-radius: $rounded-lg;
-        padding: 0 1rem;
-        font-size: $font-sm;
-        font-weight: 700;
-        color: $primary !important;
-        text-transform: uppercase;
-        text-decoration: none;
-        transition: all 0.15s ease-in-out;
+    .wpforms-page-next {
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+      align-items: center;
+      height: 2.75rem;
+      background: $secondary !important;
+      border: 1px solid $secondary;
+      border-radius: $rounded-lg;
+      padding: 0 1rem;
+      font-size: $font-sm;
+      font-weight: 700;
+      color: $primary !important;
+      text-transform: uppercase;
+      text-decoration: none;
+      transition: all 0.15s ease-in-out;
 
-        @include tablet {
-          font-size: $font-base;
-        }
+      @include tablet {
+        font-size: $font-base;
+      }
 
-        @include laptop {
-          font-size: $font-semi-md;
-        }
+      @include laptop {
+        font-size: $font-semi-md;
+      }
 
-        &:hover {
-          border: 1px solid $accent;
-          background: $accent !important;
-        }
+      &:hover {
+        border: 1px solid $accent;
+        background: $accent !important;
       }
     }
 	}
