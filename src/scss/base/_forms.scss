@@ -539,6 +539,43 @@
 			background: transparent;
 			box-shadow: none;
 		}
+
+    .wpforms-pagebreak-center {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      .wpforms-page-next {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        height: 2.75rem;
+        background: $secondary !important;
+        border: 1px solid $secondary;
+        border-radius: $rounded-lg;
+        padding: 0 1rem;
+        font-size: $font-sm;
+        font-weight: 700;
+        color: $primary !important;
+        text-transform: uppercase;
+        text-decoration: none;
+        transition: all 0.15s ease-in-out;
+
+        @include tablet {
+          font-size: $font-base;
+        }
+
+        @include laptop {
+          font-size: $font-semi-md;
+        }
+
+        &:hover {
+          border: 1px solid $accent;
+          background: $accent !important;
+        }
+      }
+    }
 	}
 
 	.wpforms-page-3 {
@@ -724,6 +761,43 @@
 				accent-color: $secondary;
 			}
 		}
+
+    .wpforms-pagebreak-center {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      .wpforms-page-next {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        height: 2.75rem;
+        background: $secondary !important;
+        border: 1px solid $secondary;
+        border-radius: $rounded-lg;
+        padding: 0 1rem;
+        font-size: $font-sm;
+        font-weight: 700;
+        color: $primary !important;
+        text-transform: uppercase;
+        text-decoration: none;
+        transition: all 0.15s ease-in-out;
+
+        @include tablet {
+          font-size: $font-base;
+        }
+
+        @include laptop {
+          font-size: $font-semi-md;
+        }
+
+        &:hover {
+          border: 1px solid $accent;
+          background: $accent !important;
+        }
+      }
+    }
 	}
 
 	.wpforms-page-4 {
@@ -817,11 +891,36 @@
 			text-transform: uppercase;
 		}
 
-		.wpforms-submit {
-			background: $secondary;
-			color: $primary;
-			text-transform: uppercase;
-		}
+    .wpforms-submit {
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+      align-items: center;
+      height: 2.75rem;
+      background: $secondary !important;
+      border: 1px solid $secondary;
+      border-radius: $rounded-lg;
+      padding: 0 1rem;
+      font-size: $font-sm;
+      font-weight: 700;
+      color: $primary !important;
+      text-transform: uppercase;
+      text-decoration: none;
+      transition: all 0.15s ease-in-out;
+
+      @include tablet {
+        font-size: $font-base;
+      }
+
+      @include laptop {
+        font-size: $font-semi-md;
+      }
+
+      &:hover {
+        border: 1px solid $accent;
+        background: $accent !important;
+      }
+    }
 	}
 
 	.wpforms-error {
