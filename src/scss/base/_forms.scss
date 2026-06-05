@@ -7,7 +7,7 @@
 	width: 100%;
 
 	.wpforms-field {
-		margin-bottom: 1.125rem;
+		margin-bottom: 0.5rem;
 		padding: 0;
 	}
 
@@ -28,7 +28,7 @@
 	select,
 	textarea {
 		width: 100%;
-		min-height: 3.375rem;
+		height: 2rem;
 		border: 1px solid transparent;
 		border-radius: $rounded-lg;
 		background: $white;
@@ -95,42 +95,68 @@
 		}
 
 		.wpforms-page-next {
-			width: 100%;
-			min-height: 3.375rem;
-			white-space: nowrap;
+			display: flex;
+      flex-direction: row;
+      justify-content: center;
+      align-items: center;
+      height: 2.75rem;
+      background: $secondary;
+      border: 1px solid $secondary;
+      border-radius: $rounded-lg;
+      padding: 0 1rem;
+      font-size: $font-sm;
+      font-weight: 700;
+      color: $primary;
+      text-transform: uppercase;
+      text-decoration: none;
+      transition: all 0.15s ease-in-out;
 
-			@include tablet {
-				width: auto;
-			}
+      @include tablet {
+        font-size: $font-base;
+      }
+
+      @include laptop {
+        font-size: $font-semi-md;
+      }
+
+      &:hover {
+        border: 1px solid $accent;
+        background: $accent;
+      }
 		}
 	}
 
 	.wpforms-page-prev,
 	.wpforms-page-next,
 	.wpforms-submit {
-		width: 100%;
-		min-width: 0;
-		margin: 0 0 0.75rem;
-		border: 0;
-		border-radius: $rounded-lg;
-		background: $secondary;
-		color: $primary;
-		padding: 0.9375rem 2.125rem;
-		font-size: $font-semi-md;
-		font-weight: 700;
-		cursor: pointer;
-		transition:
-			transform 0.18s ease,
-			opacity 0.18s ease;
+		display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    height: 2.75rem;
+    background: $secondary;
+    border: 1px solid $secondary;
+    border-radius: $rounded-lg;
+    padding: 0 1rem;
+    font-size: $font-sm;
+    font-weight: 700;
+    color: $primary;
+    text-transform: uppercase;
+    text-decoration: none;
+    transition: all 0.15s ease-in-out;
 
-		@include tablet {
-			width: auto;
-			margin-bottom: 0;
-		}
+    @include tablet {
+      font-size: $font-base;
+    }
 
-		&:hover {
-			transform: translateY(-1px);
-		}
+    @include laptop {
+      font-size: $font-semi-md;
+    }
+
+    &:hover {
+      border: 1px solid $accent;
+      background: $accent;
+    }
 
 		&:disabled {
 			opacity: 0.5;
@@ -140,16 +166,35 @@
 	}
 
 	.wpforms-page-prev {
-		background: transparent;
-		color: $white;
-		text-align: center;
-		text-decoration: underline;
+		display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    height: 2.75rem;
+    background: transparent;
+    border: 1px solid $secondary;
+    border-radius: $rounded-lg;
+    padding: 0 1rem;
+    font-size: $font-sm;
+    font-weight: 700;
+    color: $secondary;
+    text-transform: uppercase;
+    text-decoration: none;
+    transition: all 0.15s ease-in-out;
 
-		@include tablet {
-			margin-right: 1.25rem;
-			padding-right: 0;
-			padding-left: 0;
-		}
+    @include tablet {
+      font-size: $font-base;
+    }
+
+    @include laptop {
+      font-size: $font-semi-md;
+    }
+
+    &:hover {
+      border: 1px solid $accent;
+      background: $accent;
+      color: $primary;
+    }
 	}
 
 	.wpforms-page-2,
@@ -309,11 +354,11 @@
 	}
 
 	.date-card {
-		min-height: 5.5rem;
+		min-height: 3rem;
 		padding: 1.125rem 0.625rem;
 
 		@include tablet {
-			min-height: 6rem;
+			min-height: 4.5rem;
 		}
 
 		@include laptop {
@@ -330,7 +375,7 @@
 	.date-day {
 		margin-bottom: 0.625rem;
 		font-size: clamp($font-base, 1.6vw, $font-md);
-		font-weight: 800;
+		font-weight: 700;
 		line-height: $line-height;
 	}
 
@@ -403,7 +448,7 @@
 	.time-card {
 		width: 100%;
 		min-width: 0;
-		min-height: 3.625rem;
+		min-height: 2rem;
 		padding: 1rem 1.75rem;
 		font-size: $font-md;
 		font-weight: 600;
@@ -520,7 +565,7 @@
 		.wpforms-title {
 			margin: 0 0 1.75rem;
 			color: $white;
-			font-size: clamp($font-xl, 3vw, $font-3xl);
+			font-size: clamp($font-md, 3vw, $font-xl);
 			font-weight: 400;
 			line-height: $line-height;
 			text-align: center;
@@ -539,13 +584,13 @@
 		input[type='number'],
 		select,
 		textarea {
-			min-height: 4rem;
+			min-height: 2rem;
 			border: 0;
 			border-radius: 0;
 			background: $white;
 			color: $black;
 			padding: 1rem 1.25rem;
-			font-size: clamp($font-base, 1.7vw, $font-md);
+			font-size: $font-base;
 			line-height: $line-height;
 			box-shadow: none;
 
