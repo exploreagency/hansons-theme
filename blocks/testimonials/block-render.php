@@ -68,12 +68,12 @@ $testimonials_list = get_field( 'testimonials_list' );
                           </span>
 
                           <div class="testimonials__carousel__slide__review__wrapper"
-                               x-data="{ expanded: false, collapsedHeight: 86, getHeight() { return this.expanded ? this.$refs.reviewInner.scrollHeight + 'px' : this.collapsedHeight + 'px'; }, refreshEmbla() { this.$nextTick(() => { window.dispatchEvent(new Event('resize')); }); } }"
+                               x-data="{ expanded: false }"
                             >
                             <div class="testimonials__carousel__slide__review"
                                  x-ref="reviewInner"
                                  :class="{ 'is-expanded': expanded }"
-		                             :style="{ maxHeight: getHeight() }"
+		                             :style="expanded ? 'max-height: ' + $refs.reviewInner.scrollHeight + 'px' : 'max-height: 86px'"
                               >
                               <?= esc_html( $review_plain_text ); ?>
                             </div>
@@ -81,7 +81,7 @@ $testimonials_list = get_field( 'testimonials_list' );
                             <?php if ( $should_truncate ) : ?>
                               <button type="button"
                                       class="testimonials__carousel__slide__read-more"
-                                      @click="expanded = !expanded; refreshEmbla();"
+                                      @click="expanded = !expanded; setTimeout(function () { window.dispatchEvent(new Event('resize')); }, 250)"
 			                                :aria-expanded="expanded.toString()"
                                 >
                                 <span x-text="expanded ? 'Read less' : 'Read more'"></span>
