@@ -36,7 +36,9 @@ $testimonials_list = get_field( 'testimonials_list' );
             <div class="embla__viewport">
               <div class="embla__wrapper">
                 <?php foreach ( $testimonials_list as $testimonial ) :
+                  $pfp = $testimonial['pfp'];
                   $name = $testimonial['name'];
+                  $posted_date = $testimonial['posted_date'];
                   $review = $testimonial['review'];
                   $source = $testimonial['source'];
                   ?>
@@ -45,33 +47,32 @@ $testimonials_list = get_field( 'testimonials_list' );
                       <div class="testimonials__carousel__slide__wrapper">
                         <div class="testimonials__carousel__slide__content">
                           <div class="testimonials__carousel__slide__heading">
-                            <svg width="23" height="14" viewBox="0 0 23 14" fill="none" xmlns="http://www.w3.org/2000/svg">
-                              <path d="M2.52239 0.5H11.0112L5.57836 13.5H0L2.52239 0.5ZM13.5336 0.5H22.0224L16.5896 13.5H11.0112L13.5336 0.5Z" fill="currentColor"/>
-                            </svg>
-                            <span class="testimonials__carousel__slide__rating">
-                              ★★★★★
-                            </span>
+                            <img src="<?= esc_url( wp_get_attachment_image_src( $pfp, 'full' )[0] ); ?>"
+                                 alt="<?= esc_attr( get_post_meta( $pfp, '_wp_attachment_image_alt', TRUE ) ); ?>"
+                                 loading="lazy"
+                                 class="testimonials__carousel__slide__pfp"
+                              />
+                            <p class="testimonials__carousel__slide__name">
+                              <?= wp_kses_post( $name ); ?>
+                            </p>
+                            <p class="testimonials__carousel__slide__date">
+                              <?= wp_kses_post( $posted_date ); ?>
+                            </p>
                           </div>
+
+                          <span class="testimonials__carousel__slide__rating">
+                            ★★★★★
+                          </span>
 
                           <p class="testimonials__carousel__slide__review">
                             <?= wp_kses_post( $review ); ?>
                           </p>
-                        </div>
 
-                        <div class="testimonials__carousel__slide__footing">
-                          <div class="testimonials__carousel__slide__divider"></div>
-
-                          <div class="testimonials__carousel__slide__source">
-                            <p class="testimonials__carousel__slide__name">
-                              <?= wp_kses_post( $name ); ?>
-                            </p>
-
-                            <img src="<?= esc_url( wp_get_attachment_image_src( $source, 'testimonial-source' )[0] ); ?>"
-                                alt="<?= esc_attr( get_post_meta( $source, '_wp_attachment_image_alt', TRUE ) ); ?>"
-                                loading="lazy"
-                                class="testimonials__carousel__slide__icon"
-                              />
-                          </div>
+                          <img src="<?= esc_url( wp_get_attachment_image_src( $source, 'testimonial-source' )[0] ); ?>"
+                               alt="<?= esc_attr( get_post_meta( $source, '_wp_attachment_image_alt', TRUE ) ); ?>"
+                               loading="lazy"
+                               class="testimonials__carousel__slide__icon"
+                            />
                         </div>
                       </div>
                     </div>

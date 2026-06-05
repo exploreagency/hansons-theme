@@ -78,16 +78,18 @@
 
       &__heading {
         display: flex;
-        flex-direction: row;
-        justify-content: space-between;
+        flex-direction: column;
+        justify-content: flex-start;
         align-items: center;
+        gap: 0.5rem;
         width: 100%;
-        color: variables.$black;
       }
 
       &__rating {
+        display: block;
         font-size: variables.$font-base;
         color: variables.$stars;
+        letter-spacing: 0.25rem;
       }
 
       &__review {
@@ -95,21 +97,7 @@
         font-weight: 400;
         line-height: 1.2;
         color: variables.$black;
-      }
-
-      &__footing {
-        display: flex;
-        flex-direction: column;
-        justify-content: flex-end;
-        align-items: flex-start;
-        gap: 1rem;
-        width: 100%;
-      }
-
-      &__divider {
-        height: 0.125rem;
-        width: 100%;
-        background: variables.$gray;
+        text-align: center;
       }
 
       &__source {
@@ -120,12 +108,25 @@
         width: 100%;
       }
 
-      &__author {
+      &__name {
         font-size: variables.$font-base;
         color: variables.$black;
       }
 
+      &__date {
+        font-size: variables.$font-base;
+        color: rgba( variables.$black, 0.7 );
+      }
+
       &__icon {
+        max-width: 1.5rem;
+        width: 100%;
+        max-height: 1.5rem;
+        height: 100%;
+        object-fit: contain;
+      }
+
+      &__pfp {
         max-width: 2rem;
         width: 100%;
         max-height: 2rem;
