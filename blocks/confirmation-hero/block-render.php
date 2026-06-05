@@ -14,7 +14,7 @@ $content = get_field( 'content' );
              data-orientation="column"
           >
           <?php if ( $content ) : ?>
-            <div class="confirmation-hero__content js-thank-you-scheduler">
+            <div class="confirmation-hero__content js-scheduler-thank-you">
               <?= wp_kses_post( $content ); ?>
 
               <a href="#"
