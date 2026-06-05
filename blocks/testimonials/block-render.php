@@ -64,9 +64,41 @@ $testimonials_list = get_field( 'testimonials_list' );
                             ★★★★★
                           </span>
 
-                          <p class="testimonials__carousel__slide__review">
-                            <?= wp_kses_post( $review ); ?>
-                          </p>
+                          <div class="testimonials__carousel__slide__review__wrapper"
+                               x-data="{
+                                expanded: false,
+                                canExpand: false,
+                                init() {
+                                  this.$nextTick(() => {
+                                    this.canExpand = this.$refs.review.scrollHeight > this.$refs.review.clientHeight;
+                                  });
+                                },
+                                toggle() {
+                                  this.expanded = !this.expanded;
+
+                                  this.$nextTick(() => {
+                                    window.dispatchEvent(new Event('resize'));
+                                  });
+                                }
+                              }"
+                            >
+                            <p class="testimonials__carousel__slide__review"
+                               x-ref="review"
+                               :class="{ 'is-clamped': !expanded }"
+                              >
+                              <?= wp_kses_post( $review ); ?>
+                            </p>
+                          </div>
+
+                          <button type="button"
+                                  class="testimonials__carousel__slide__read-more"
+                                  x-show="canExpand"
+                                  x-cloak
+                                  @click="toggle()"
+                                  :aria-expanded="expanded.toString()"
+                            >
+                            <span x-text="expanded ? 'Read less' : 'Read more'"></span>
+                          </button>
 
                           <img src="<?= esc_url( wp_get_attachment_image_src( $source, 'testimonial-source' )[0] ); ?>"
                                alt="<?= esc_attr( get_post_meta( $source, '_wp_attachment_image_alt', TRUE ) ); ?>"
