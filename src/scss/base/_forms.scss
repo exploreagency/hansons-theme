@@ -111,7 +111,7 @@
       padding: 0 1rem;
       font-size: $font-sm;
       font-weight: 700;
-      color: $primary;
+      color: $primary !important;
       text-transform: uppercase;
       text-decoration: none;
       transition: all 0.15s ease-in-out;
@@ -126,7 +126,7 @@
 
       &:hover {
         border: 1px solid $accent;
-        background: $accent;
+        background: $accent !important;
       }
 		}
 	}
