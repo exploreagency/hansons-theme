@@ -68,20 +68,7 @@ $testimonials_list = get_field( 'testimonials_list' );
                           </span>
 
                           <div class="testimonials__carousel__slide__review__wrapper"
-                               x-data="{
-                                expanded: false,
-                                collapsedHeight: 86,
-                                getHeight() {
-                                  return this.expanded
-                                    ? this.$refs.reviewInner.scrollHeight + 'px'
-                                    : this.collapsedHeight + 'px';
-                                },
-                                refreshEmbla() {
-                                  this.$nextTick(() => {
-                                    window.dispatchEvent(new Event('resize'));
-                                  });
-                                }
-                              }"
+                               x-data="{ expanded: false, collapsedHeight: 86, getHeight() { return this.expanded ? this.$refs.reviewInner.scrollHeight + 'px' : this.collapsedHeight + 'px'; }, refreshEmbla() { this.$nextTick(() => { window.dispatchEvent(new Event('resize')); }); } }"
                             >
                             <div class="testimonials__carousel__slide__review"
                                  x-ref="reviewInner"
