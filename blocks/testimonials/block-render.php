@@ -46,12 +46,12 @@ $testimonials_list = get_field( 'testimonials_list' );
                     <div class="testimonials__carousel__slide__container">
                       <div class="testimonials__carousel__slide__wrapper">
                         <div class="testimonials__carousel__slide__content">
+                          <img src="<?= esc_url( wp_get_attachment_image_src( $pfp, 'full' )[0] ); ?>"
+                               alt="<?= esc_attr( get_post_meta( $pfp, '_wp_attachment_image_alt', TRUE ) ); ?>"
+                               loading="lazy"
+                               class="testimonials__carousel__slide__pfp"
+                            />
                           <div class="testimonials__carousel__slide__heading">
-                            <img src="<?= esc_url( wp_get_attachment_image_src( $pfp, 'full' )[0] ); ?>"
-                                 alt="<?= esc_attr( get_post_meta( $pfp, '_wp_attachment_image_alt', TRUE ) ); ?>"
-                                 loading="lazy"
-                                 class="testimonials__carousel__slide__pfp"
-                              />
                             <p class="testimonials__carousel__slide__name">
                               <?= wp_kses_post( $name ); ?>
                             </p>
