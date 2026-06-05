@@ -297,6 +297,9 @@
 		.wpforms-pagebreak-left,
 		.wpforms-pagebreak-center,
 		.wpforms-pagebreak-right {
+      display: flex;
+      justify-content: center;
+      align-items: center;
 			width: 100%;
 			margin: 2rem auto 0;
 			padding: 0;
@@ -580,6 +583,39 @@
       }
     }
 	}
+
+  .wpforms-page-2 {
+    .wpforms-page-next {
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+      align-items: center;
+      height: 2.75rem;
+      background: $secondary !important;
+      border: 1px solid $secondary;
+      border-radius: $rounded-lg;
+      padding: 0 1rem;
+      font-size: $font-sm;
+      font-weight: 700;
+      color: $primary !important;
+      text-transform: uppercase;
+      text-decoration: none;
+      transition: all 0.15s ease-in-out;
+
+      @include tablet {
+        font-size: $font-base;
+      }
+
+      @include laptop {
+        font-size: $font-semi-md;
+      }
+
+      &:hover {
+        border: 1px solid $accent;
+        background: $accent !important;
+      }
+    }
+  }
 
 	.wpforms-page-3 {
 		.appointment-details {
