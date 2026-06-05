@@ -82,12 +82,12 @@ $testimonials_list = get_field( 'testimonials_list' );
                                 }
                               }"
                             >
-                            <div class="testimonials__carousel__slide__review"
+                            <p class="testimonials__carousel__slide__review"
                                x-ref="review"
                                :class="{ 'is-clamped': !expanded }"
                               >
                               <?= wp_kses_post( $review ); ?>
-                            </div>
+                            </p>
                           </div>
 
                           <button type="button"
