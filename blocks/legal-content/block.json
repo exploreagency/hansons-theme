@@ -1,0 +1,29 @@
+{
+  "name": "acf/legal-content",
+  "title": "ACF Block - Legal Content",
+  "description": "",
+  "category": "custom-blocks",
+  "icon": "screenoptions",
+  "example": {
+    "attributes": {
+      "mode": "preview",
+      "data": {
+        "preview": true
+      }
+    }
+  },
+  "supports": {
+    "customClassName": true,
+    "anchor": true
+  },
+  "acf": {
+    "mode": "edit",
+    "renderTemplate": "block-render.php"
+  },
+  "style": [
+    "file:../../dist/css/blocks/legal-content.min.css"
+  ],
+  "script": [
+    "file:../../dist/js/blocks/legal-content.min.js"
+  ]
+}
