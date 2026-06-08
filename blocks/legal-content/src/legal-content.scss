@@ -20,14 +20,13 @@
     justify-content: flex-start;
     align-items: flex-start;
     gap: 1rem;
-    max-width: 40rem;
 
     @include mixins.laptop {
       gap: 1.5rem;
     }
 
     h2 {
-      font-size: clamp( variables.$font-lg, 5vw, variables.$font-3xl );
+      font-size: clamp( variables.$font-md, 5vw, variables.$font-2xl );
       color: variables.$primary;
       font-weight: 700;
       text-align: left;
