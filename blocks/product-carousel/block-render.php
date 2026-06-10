@@ -29,7 +29,7 @@ $products_list = get_field( 'products_list' );
         </div>
 
         <?php if ( $products_list ) : ?>
-          <div class="product-caoursel__carousel"
+          <div class="product-carousel__carousel"
                data-embla
                data-options='{ "loop": true, "align": "start" }'
             >
