@@ -39,7 +39,7 @@ $products_list = get_field( 'products_list' );
                   $image = $product['image'];
                   $heading = $product['heading'];
                   ?>
-                  <div class="product-caoursel__carousel__slide">
+                  <div class="product-carousel__carousel__slide">
                     <div class="product-caoursel__carousel__slide__container">
                       <div class="product-carousel__carousel__slide__wrapper">
                         <img src="<?= esc_url( wp_get_attachment_image_src( $image, 'full' )[0] ); ?>"
