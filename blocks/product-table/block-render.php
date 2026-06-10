@@ -3,8 +3,9 @@
  * Product Table Block
  */
 
-$heading       = get_field( 'heading' );
-$products_list = get_field( 'products_list' );
+$heading           = get_field( 'heading' );
+$products_headings = get_field( 'products_headings' );
+$products_list     = get_field( 'products_list' );
 ?>
 
 <section <?php echo vt_block_attributes( 'product-table', $block ); ?>>
@@ -21,26 +22,26 @@ $products_list = get_field( 'products_list' );
           <?php endif; ?>
         </div>
 
-        <?php if ( $products_list ) : ?>
+        <?php if ( $products_list && $products_headings ) : ?>
           <div class="product-table__products">
             <div class="product-table__products__header product-table__products__header--left">
               <h3 class="product-table__products__heading product-table__products__heading--left">
-                Roofing package
+                <?= wp_kses_post( $products_headings['label'] ); ?>
               </h3>
             </div>
             <div class="product-table__products__header product-table__products__header--center">
               <h3 class="product-table__products__heading product-table__products__heading--center">
-                CLASSIC <br>series
+                <?= wp_kses_post( $products_headings['classic'] ); ?>
               </h3>
             </div>
             <div class="product-table__products__header product-table__products__header--center">
               <h3 class="product-table__products__heading product-table__products__heading--center">
-                DELUXE <br>series
+                <?= wp_kses_post( $products_headings['deluxe'] ); ?>
               </h3>
             </div>
             <div class="product-table__products__header product-table__products__header--center">
               <h3 class="product-table__products__heading product-table__products__heading--center">
-                PREMIUM <br>series
+                <?= wp_kses_post( $products_headings['premium'] ); ?>
               </h3>
             </div>
 
@@ -66,6 +67,17 @@ $products_list = get_field( 'products_list' );
                        loading="lazy"
                        class="product-table__products__body__image"
                     />
+                <?php elseif ( $classic['text'] && $classic['image'] ) : ?>
+                  <div class="product-table__products__body__wrapper">
+                    <img src="<?= esc_url( wp_get_attachment_image_src( $classic['image'], 'full' )[0] ); ?>"
+                         alt="<?= esc_attr( get_post_meta( $classic['image'], '_wp_attachment_image_alt', TRUE ) ); ?>"
+                         loading="lazy"
+                         class="product-table__products__body__wrapper__image"
+                      />
+                    <p class="product-table__products__body__wrapper__text">
+                      <?= wp_kses_post( $classic['text'] ); ?>
+                    </p>
+                  </div>
                 <?php endif; ?>
               </div>
               <div class="product-table__products__body product-table__products__body--center">
@@ -79,6 +91,17 @@ $products_list = get_field( 'products_list' );
                        loading="lazy"
                        class="product-table__products__body__image"
                     />
+                <?php elseif ( $deluxe['text'] && $deluxe['image'] ) : ?>
+                  <div class="product-table__products__body__wrapper">
+                    <img src="<?= esc_url( wp_get_attachment_image_src( $deluxe['image'], 'full' )[0] ); ?>"
+                         alt="<?= esc_attr( get_post_meta( $deluxe['image'], '_wp_attachment_image_alt', TRUE ) ); ?>"
+                         loading="lazy"
+                         class="product-table__products__body__wrapper__image"
+                      />
+                    <p class="product-table__products__body__wrapper__text">
+                      <?= wp_kses_post( $deluxe['text'] ); ?>
+                    </p>
+                  </div>
                 <?php endif; ?>
               </div>
               <div class="product-table__products__body product-table__products__body--premium product-table__products__body--center">
@@ -92,6 +115,17 @@ $products_list = get_field( 'products_list' );
                        loading="lazy"
                        class="product-table__products__body__image"
                     />
+                <?php elseif ( $premium['text'] && $premium['image'] ) : ?>
+                  <div class="product-table__products__body__wrapper">
+                    <img src="<?= esc_url( wp_get_attachment_image_src( $premium['image'], 'full' )[0] ); ?>"
+                         alt="<?= esc_attr( get_post_meta( $premium['image'], '_wp_attachment_image_alt', TRUE ) ); ?>"
+                         loading="lazy"
+                         class="product-table__products__body__wrapper__image"
+                      />
+                    <p class="product-table__products__body__wrapper__text">
+                      <?= wp_kses_post( $premium['text'] ); ?>
+                    </p>
+                  </div>
                 <?php endif; ?>
               </div>
             <?php endforeach; ?>
