@@ -40,8 +40,8 @@ $products_list = get_field( 'products_list' );
                   $heading = $product['heading'];
                   ?>
                   <div class="product-caoursel__carousel__slide">
-                    <div class="tproduct-caoursel__carousel__slide__container">
-                      <div class="product-caoursel__carousel__slide__wrapper">
+                    <div class="product-caoursel__carousel__slide__container">
+                      <div class="product-carousel__carousel__slide__wrapper">
                         <img src="<?= esc_url( wp_get_attachment_image_src( $image, 'full' )[0] ); ?>"
                              alt="<?= esc_attr( get_post_meta( $image, '_wp_attachment_image_alt', TRUE ) ); ?>"
                              loading="lazy"
