@@ -1,0 +1,138 @@
+/* Product Grid (Simple)
+   ========================================================================== */
+
+@use '../../../src/scss/abstracts/variables';
+@use '../../../src/scss/abstracts/mixins';
+
+.product-grid-simple {
+  width: 100%;
+
+  &__heading {
+    font-size: clamp( variables.$font-lg, 5vw, variables.$font-3xl );
+    color: variables.$primary;
+    font-weight: 700;
+    text-align: center;
+  }
+
+  &__description {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+    width: 100%;
+    color: variables.$black;
+    text-align: center;
+
+    span {
+      color: variables.$primary;
+    }
+
+    p {
+      font-size: clamp( variables.$font-base, 1vw, variables.$font-md );
+      color: variables.$black;
+      font-weight: 400;
+      text-align: center;
+    }
+  }
+
+  &__products {
+    display: grid;
+    grid-template-columns: 1fr;
+    align-items: flex-start;
+    gap: 2rem;
+    width: 100%;
+
+    @include mixins.laptop {
+      grid-template-columns: 1fr 1fr 1fr;
+    }
+
+    @include mixins.desktop {
+      gap: 3rem;
+    }
+
+    @include mixins.widescreen {
+      gap: 4rem;
+    }
+  }
+
+  &__product {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 1rem;
+    width: 100%;
+    background: variables.$white;
+    box-shadow: 2px 2px 6px rgba(0, 0, 0, 0.2);
+
+    &__wrapper {
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      align-items: center;
+      gap: 1rem;
+      width: 100%;
+      padding: 2rem 1.25rem;
+
+      @include mixins.desktop {
+        padding: 4rem 1.5rem;
+      }
+    }
+
+    &__heading {
+      font-size: clamp( variables.$font-md, 4vw, variables.$font-2xl );
+      font-weight: 700;
+      color: variables.$primary;
+      text-align: center;
+
+      span {
+        color: variables.$black;
+      }
+    }
+
+    &__image {
+      width: 100%;
+      height: 16rem;
+      object-fit: cover;
+
+      @include mixins.tablet {
+        height: 20rem;
+      }
+    }
+
+    &__feature-list {
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      align-items: center;
+      width: 100%;
+    }
+
+    &__feature {
+      font-size: clamp( variables.$font-base, 1vw, variables.$font-md );
+      font-weight: 400;
+      color: variables.$black;
+      text-align: left;
+
+      &__wrapper {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: flex-start;
+        width: 100%;
+        height: 3rem;
+        border-bottom: 1px solid variables.$secondary;
+
+        @include mixins.tablet {
+          height: 3.25rem;
+        }
+
+        @include mixins.laptop {
+          height: 3.75rem;
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,29 @@
+{
+  "name": "acf/product-grid-simple",
+  "title": "ACF Block - Product Grid (Simple)",
+  "description": "",
+  "category": "custom-blocks",
+  "icon": "screenoptions",
+  "example": {
+    "attributes": {
+      "mode": "preview",
+      "data": {
+        "preview": true
+      }
+    }
+  },
+  "supports": {
+    "customClassName": true,
+    "anchor": true
+  },
+  "acf": {
+    "mode": "edit",
+    "renderTemplate": "block-render.php"
+  },
+  "style": [
+    "file:../../dist/css/blocks/product-grid-simple.min.css"
+  ],
+  "script": [
+    "file:../../dist/js/blocks/product-grid-simple.min.js"
+  ]
+}
