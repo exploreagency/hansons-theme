@@ -1,0 +1,29 @@
+{
+  "name": "acf/product-carousel",
+  "title": "ACF Block - Product Carousel",
+  "description": "",
+  "category": "custom-blocks",
+  "icon": "screenoptions",
+  "example": {
+    "attributes": {
+      "mode": "preview",
+      "data": {
+        "preview": true
+      }
+    }
+  },
+  "supports": {
+    "customClassName": true,
+    "anchor": true
+  },
+  "acf": {
+    "mode": "edit",
+    "renderTemplate": "block-render.php"
+  },
+  "style": [
+    "file:../../dist/css/blocks/product-carousel.min.css"
+  ],
+  "script": [
+    "file:../../dist/js/blocks/product-carousel.min.js"
+  ]
+}

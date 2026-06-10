@@ -1,0 +1,92 @@
+/* Product Carousel
+   ========================================================================== */
+
+@use '../../../src/scss/abstracts/variables';
+@use '../../../src/scss/abstracts/mixins';
+
+.product-carousel {
+  width: 100%;
+
+  &__heading {
+    font-size: clamp( variables.$font-lg, 5vw, variables.$font-3xl );
+    color: variables.$primary;
+    font-weight: 700;
+    text-align: center;
+  }
+
+  &__description {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+    width: 100%;
+    color: variables.$black;
+    text-align: center;
+
+    span {
+      color: variables.$primary;
+    }
+
+    p {
+      font-size: clamp( variables.$font-base, 1vw, variables.$font-md );
+      color: variables.$black;
+      font-weight: 400;
+      text-align: center;
+    }
+  }
+
+  &__carousel {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 1rem;
+    width: 100%;
+
+    &__slide {
+      flex: 0 0 100%;
+      min-width: 0;
+
+      @include mixins.tablet {
+        flex: 0 0 50%;
+      }
+
+      @include mixins.laptop {
+        flex: 0 0 33.3333%;
+      }
+
+      @include mixins.widescreen {
+        flex: 0 0 25%;
+      }
+
+      &__container {
+        padding: 0 0.5rem;
+      }
+
+      &__wrapper {
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: center;
+        gap: 1rem;
+        width: 100%;
+        padding: 1.75rem 1.25rem;
+      }
+
+      &__image {
+        width: auto;
+        height: 16rem;
+        object-fit: contain;
+      }
+
+      &__heading {
+        font-size: clamp( variables.$font-semi-md, 2vw, variables.$font-lg );
+        font-weight: 500;
+        color: variables.$primary;
+        text-align: center;
+      }
+    }
+  }
+}
