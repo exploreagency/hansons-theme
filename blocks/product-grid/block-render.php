@@ -98,7 +98,18 @@ $products_list = get_field( 'products_list' );
                           </h6>
                         </div>
                         <div class="product-grid__product__secondary-feature__content">
-                          <?php if ( $feature_text ) : ?>
+                          <?php if ( $feature_text && $feature_image ) : ?>
+                            <div class="product-grid__product__secondary-feature__wrapper">
+                              <img src="<?= esc_url( wp_get_attachment_image_src( $feature_image, 'full' )[0] ); ?>"
+                                   alt="<?= esc_attr( get_post_meta( $feature_image, '_wp_attachment_image_alt', TRUE ) ); ?>"
+                                   loading="lazy"
+                                   class="product-grid__product__secondary-feature__wrapper__image"
+                                />
+                              <p class="product-grid__product__secondary-feature__wrapper__text">
+                                <?= wp_kses_post( $feature_text ); ?>
+                              </p>
+                            </div>
+                          <?php elseif ( $feature_text ) : ?>
                             <p class="product-grid__product__secondary-feature__text">
                               <?= wp_kses_post( $feature_text ); ?>
                             </p>

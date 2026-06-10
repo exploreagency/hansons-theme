@@ -263,6 +263,30 @@
         height: auto;
         object-fit: contain;
       }
+
+      &__wrapper {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 0.5rem;
+
+        &__image {
+          display: block;
+          max-width: 100%;
+          width: auto;
+          max-height: clamp(1rem, 6vw, 2rem);
+          height: auto;
+          object-fit: contain;
+        }
+
+        &__text {
+          font-size: clamp( variables.$font-sm, 3vw, variables.$font-base );
+          font-weight: 400;
+          color: variables.$black;
+          text-align: center;
+        }
+      }
     }
   }
 }
