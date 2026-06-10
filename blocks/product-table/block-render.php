@@ -57,17 +57,7 @@ $products_list     = get_field( 'products_list' );
                 </h4>
               </div>
               <div class="product-table__products__body product-table__products__body--center">
-                <?php if ( $classic['text'] ) : ?>
-                  <p class="product-table__products__body__text">
-                    <?= wp_kses_post( $classic['text'] ); ?>
-                  </p>
-                <?php elseif ( $classic['image'] ) : ?>
-                  <img src="<?= esc_url( wp_get_attachment_image_src( $classic['image'], 'full' )[0] ); ?>"
-                       alt="<?= esc_attr( get_post_meta( $classic['image'], '_wp_attachment_image_alt', TRUE ) ); ?>"
-                       loading="lazy"
-                       class="product-table__products__body__image"
-                    />
-                <?php elseif ( $classic['text'] && $classic['image'] ) : ?>
+                <?php if ( $classic['text'] && $classic['image'] ) : ?>
                   <div class="product-table__products__body__wrapper">
                     <img src="<?= esc_url( wp_get_attachment_image_src( $classic['image'], 'full' )[0] ); ?>"
                          alt="<?= esc_attr( get_post_meta( $classic['image'], '_wp_attachment_image_alt', TRUE ) ); ?>"
@@ -78,20 +68,20 @@ $products_list     = get_field( 'products_list' );
                       <?= wp_kses_post( $classic['text'] ); ?>
                     </p>
                   </div>
-                <?php endif; ?>
-              </div>
-              <div class="product-table__products__body product-table__products__body--center">
-                <?php if ( $deluxe['text'] ) : ?>
+                <?php elseif ( $classic['text'] ) : ?>
                   <p class="product-table__products__body__text">
-                    <?= wp_kses_post( $deluxe['text'] ); ?>
+                    <?= wp_kses_post( $classic['text'] ); ?>
                   </p>
-                <?php elseif ( $deluxe['image'] ) : ?>
-                  <img src="<?= esc_url( wp_get_attachment_image_src( $deluxe['image'], 'full' )[0] ); ?>"
-                       alt="<?= esc_attr( get_post_meta( $deluxe['image'], '_wp_attachment_image_alt', TRUE ) ); ?>"
+                <?php elseif ( $classic['image'] ) : ?>
+                  <img src="<?= esc_url( wp_get_attachment_image_src( $classic['image'], 'full' )[0] ); ?>"
+                       alt="<?= esc_attr( get_post_meta( $classic['image'], '_wp_attachment_image_alt', TRUE ) ); ?>"
                        loading="lazy"
                        class="product-table__products__body__image"
                     />
-                <?php elseif ( $deluxe['text'] && $deluxe['image'] ) : ?>
+                <?php endif; ?>
+              </div>
+              <div class="product-table__products__body product-table__products__body--center">
+                <?php if ( $deluxe['text'] && $deluxe['image'] ) : ?>
                   <div class="product-table__products__body__wrapper">
                     <img src="<?= esc_url( wp_get_attachment_image_src( $deluxe['image'], 'full' )[0] ); ?>"
                          alt="<?= esc_attr( get_post_meta( $deluxe['image'], '_wp_attachment_image_alt', TRUE ) ); ?>"
@@ -102,20 +92,20 @@ $products_list     = get_field( 'products_list' );
                       <?= wp_kses_post( $deluxe['text'] ); ?>
                     </p>
                   </div>
-                <?php endif; ?>
-              </div>
-              <div class="product-table__products__body product-table__products__body--premium product-table__products__body--center">
-                <?php if ( $premium['text'] ) : ?>
+                <?php elseif ( $deluxe['text'] ) : ?>
                   <p class="product-table__products__body__text">
-                    <?= wp_kses_post( $premium['text'] ); ?>
+                    <?= wp_kses_post( $deluxe['text'] ); ?>
                   </p>
-                <?php elseif ( $premium['image'] ) : ?>
-                  <img src="<?= esc_url( wp_get_attachment_image_src( $premium['image'], 'full' )[0] ); ?>"
-                       alt="<?= esc_attr( get_post_meta( $premium['image'], '_wp_attachment_image_alt', TRUE ) ); ?>"
+                <?php elseif ( $deluxe['image'] ) : ?>
+                  <img src="<?= esc_url( wp_get_attachment_image_src( $deluxe['image'], 'full' )[0] ); ?>"
+                       alt="<?= esc_attr( get_post_meta( $deluxe['image'], '_wp_attachment_image_alt', TRUE ) ); ?>"
                        loading="lazy"
                        class="product-table__products__body__image"
                     />
-                <?php elseif ( $premium['text'] && $premium['image'] ) : ?>
+                <?php endif; ?>
+              </div>
+              <div class="product-table__products__body product-table__products__body--premium product-table__products__body--center">
+                <?php if ( $premium['text'] && $premium['image'] ) : ?>
                   <div class="product-table__products__body__wrapper">
                     <img src="<?= esc_url( wp_get_attachment_image_src( $premium['image'], 'full' )[0] ); ?>"
                          alt="<?= esc_attr( get_post_meta( $premium['image'], '_wp_attachment_image_alt', TRUE ) ); ?>"
@@ -126,6 +116,16 @@ $products_list     = get_field( 'products_list' );
                       <?= wp_kses_post( $premium['text'] ); ?>
                     </p>
                   </div>
+                <?php elseif ( $premium['text'] ) : ?>
+                  <p class="product-table__products__body__text">
+                    <?= wp_kses_post( $premium['text'] ); ?>
+                  </p>
+                <?php elseif ( $premium['image'] ) : ?>
+                  <img src="<?= esc_url( wp_get_attachment_image_src( $premium['image'], 'full' )[0] ); ?>"
+                       alt="<?= esc_attr( get_post_meta( $premium['image'], '_wp_attachment_image_alt', TRUE ) ); ?>"
+                       loading="lazy"
+                       class="product-table__products__body__image"
+                    />
                 <?php endif; ?>
               </div>
             <?php endforeach; ?>
