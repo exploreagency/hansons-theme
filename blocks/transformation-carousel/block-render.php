@@ -28,7 +28,7 @@ $transformations = get_field( 'transformations' );
           <?php endif; ?>
         </div>
 
-        <?php if ( $products_list ) : ?>
+        <?php if ( $transformations ) : ?>
           <div class="transformation-carousel__carousel"
                data-embla
                data-options='{ "loop": true, "align": "start" }'

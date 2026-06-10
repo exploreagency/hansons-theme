@@ -74,7 +74,7 @@
       align-items: center;
       gap: 1rem;
       width: 100%;
-      padding: 2rem 1.25rem;
+      padding: 1rem 1.25rem 2rem;
 
       @include mixins.desktop {
         padding: 4rem 1.5rem;
@@ -85,7 +85,7 @@
       font-size: clamp( variables.$font-md, 4vw, variables.$font-2xl );
       font-weight: 700;
       color: variables.$primary;
-      text-align: center;
+      text-align: left;
 
       span {
         color: variables.$black;
